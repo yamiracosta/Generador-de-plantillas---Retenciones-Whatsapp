@@ -84,6 +84,38 @@ document.addEventListener('DOMContentLoaded', () => {
     txtAreaCods.disabled = true;
     lblComprPago.textContent = "Compromiso de pago: " + mostrarFechComprPago();
 
+    //----------------------------------------------------------------------------------------------
+    //Permitir solo valores válidos para el campo de IMR
+    txtIMR.addEventListener('input', () => {
+        let value = txtIMR.value;
+
+        // Permitir solo dígitos y un punto decimal
+        value = value.replace(/[^0-9.]/g, '');
+
+        // Evitar más de un punto
+        const parts = value.split('.');
+        if (parts.length > 2) {
+            value = parts[0] + '.' + parts[1]; // elimina puntos adicionales
+        }
+
+        // Si el valor empieza con 0 y no tiene punto decimal, lo elimina (para evitar "00" o "01")
+        if (/^0[0-9]+$/.test(value)) {
+            value = value.replace(/^0+/, '');
+        }
+
+        // Evitar que solo haya un punto
+        if (value === '.') {
+            value = '';
+        }
+
+        // Si el número es 0 o menor, limpiar
+        if (value && parseFloat(value) <= 0) {
+            value = '';
+        }
+
+        txtIMR.value = value;
+    });
+
     //---------------------------------------------------------------------------------------
     // Bloquear la escritura del campo "COMPORTAMIENTO DE PAGO"
     inputCpPago.addEventListener('keydown', (e) => {

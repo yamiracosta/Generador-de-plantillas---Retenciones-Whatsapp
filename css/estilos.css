@@ -25,11 +25,19 @@ body {
 
 .field {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   margin-bottom: 8px;
   align-items: center;
   border-radius: 8px;
   justify-content: space-between
+}
+
+.field2{
+  display: flex;
+  margin-bottom: 8px;
+  align-items: center;
+  border-radius: 8px;
+  gap: 10px;
 }
 
 #formCliente {
@@ -86,4 +94,12 @@ label {
 
 #mostrarBtn{
     background-color: #198754;
+}
+
+#numeroCliente{
+  width: 30%;
+}
+
+#usuarioE{
+  width: 30%;
 }
