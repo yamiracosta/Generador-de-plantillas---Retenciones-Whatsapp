@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let ckbIMR = document.getElementById('imrCheck');
-    let txtIMR = document.getElementById('imrText');
     let txtSuper = document.getElementById('vbSupervisor');
     let ckbDsctoVig = document.getElementById('clienteDescuento');
     let cboRequiereAnul = document.getElementById('requiere');
@@ -9,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let cboNuevoPlan = document.getElementById('nuevoPlanCbo');
     let lblComprPago = document.getElementById('lblCompromPago');
     let mesAplicar = document.getElementById('mesAplicar');
-    let inputCpPago = document.getElementById('comportamientoPago');
     let ckbFecComprPago = document.getElementById('compromisoPago');
     const form = document.getElementById('formCliente');
     const txtAreaResultado = document.getElementById('resultado');
@@ -21,98 +18,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const txtSnLlamada = document.getElementById('snLlamada');
     const txtNumeroCli = document.getElementById('numeroCliente');
 
-    //--------------------------------------------------------------------------------------
-    //Habilitar o deshabilitar el campo de texto de IMR
-
-    ckbIMR.addEventListener('change', () => {
-        if (ckbIMR.checked) {
-            txtIMR.disabled = false;
-            txtIMR.value = ""; // Limpia el campo
-            txtIMR.focus();    // (opcional) Coloca el cursor en el campo
-        } else {
-            txtIMR.disabled = true;
-            txtIMR.value = "No afecto a IMR"; // Mensaje cuando se desactiva
-        }
-    });
-
     //-------------------------------------------------------------------------------------------
     //Habilitar o deshabilitar la opción de cliente con descuento vigente
 
     ckbDsctoVig.addEventListener('change', () => {
         if (ckbDsctoVig.checked) {
-            cboRequiereAnul.disabled = false;
-            if (cboRequiereAnul.value == "1") {
-                txtAreaCods.disabled = false;
-            } else {
-                txtAreaCods.disabled = true;
-            }
-        } else {
-            cboRequiereAnul.disabled = true;
-            txtAreaCods.disabled = true;
-        }
-    });
-
-    cboRequiereAnul.addEventListener('change', () => {
-        if (cboRequiereAnul.value == "1") {
             txtAreaCods.disabled = false;
+            txtAreaCods.setAttribute('required',true);
             txtAreaCods.focus();
         } else {
             txtAreaCods.disabled = true;
-            txtAreaCods.value = "";
+            txtAreaCods.setAttribute('required',true);
         }
     });
+  
+    //Iniciar el cboMeses deshabilitado
+    mesAplicar.disabled=true;
 
     //-------------------------------------------------------------------------------------------
     //Habilitar o deshabilitar el texto de nuevo plan
+    //Si el check de nuevo plan está marcado "desactivar el campo de cantidad de meses"
     ckbNuevoPlan.addEventListener('change', () => {
         if (ckbNuevoPlan.checked) {
             cboNuevoPlan.disabled = false;
+            mesAplicar.disabled = false;
+            mesAplicar.setAttribute('required', true);
         } else {
             cboNuevoPlan.disabled = true;
+            mesAplicar.disabled = true;
+            mesAplicar.setAttribute('required', false);
+            mesAplicar.value="";
         }
     });
-
-    //----------------------------------------------------------------------------------------------
-    // Inicia deshabilitado si no está marcado
-    if (!ckbIMR.checked) {
-        txtIMR.disabled = true;
-        txtIMR.value = "No afecto a IMR";
-    }
 
     txtSuper.value = "GIANFRANCO PAZ";
-    cboRequiereAnul.disabled = true;
     txtAreaCods.disabled = true;
     lblComprPago.textContent = "Compromiso de pago: " + mostrarFechComprPago();
-
-    //---------------------------------------------------------------------------------------
-    // Bloquear la escritura del campo "COMPORTAMIENTO DE PAGO"
-    inputCpPago.addEventListener('keydown', (e) => {
-        // Permitir: teclas de control, flechas y números
-        const allowedKeys = [
-            'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
-            'Backspace', 'Tab', 'Delete', // incluye el punto decimal
-        ];
-
-        // Permitir números del teclado principal y del numpad
-        if (
-            allowedKeys.includes(e.key) ||
-            (e.key >= '0' && e.key <= '9')
-        ) {
-            return; // permitir
-        }
-
-        e.preventDefault(); // bloquea cualquier otra tecla
-    });
-
-    // Detectar cuando cambia el valor (por input o seteo manual)
-    inputCpPago.addEventListener('input', () => {
-        const valor = parseFloat(inputCpPago.value);
-
-        // Si el valor no está entre 1 y 10, limpiar el campo
-        if (valor < 1 || valor > 10) {
-            inputCpPago.value = '';
-        }
-    });
 
     //------------------------------------------------------------------------------------------
     //Hacer que el botón genere la plantilla
@@ -127,19 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Obtener valores
         let operador = document.getElementById('operador').value;
-        let imr = document.getElementById('imrText').value;
-        if (imr === "No afecto a IMR") {
-            imr = `""${imr}""`;
-        }
         let promocion = document.getElementById('promocion').value;
-        let cantidadMeses = document.getElementById('meses').value;
+        let cantidadMeses = cboCantMeses.options[cboCantMeses.selectedIndex].text;
         let mesesAplicar = formatearMes(mesAplicar.value);
-        let cpPago = document.getElementById('comportamientoPago').value;
         let sn = document.getElementById('snLlamada').value;
         let vbSupervisor = document.getElementById('vbSupervisor').value;
 
         let fecComprPago = mostrarFechComprPago();
-        let clientDsctVig = document.getElementById('lblClienteDescVig').textContent + " " + cboRequiereAnul.options[cboRequiereAnul.selectedIndex].text;
+        let clientDsctVig = document.getElementById('lblClienteDescVig').textContent;
         let codsOCC = txtAreaCods.value;
         let plan = cboNuevoPlan.options[cboNuevoPlan.selectedIndex].text;
 
@@ -148,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let subcampaña = document.getElementById('subcampaña').value;
 
         //Escribir plantilla
-        txtAreaResultadoParcial = `"TIPO DE SOLICITUD: Contención/Competencia\nIMR del cliente: ${imr}\nOperador: ${operador}\nPromoción ofrecida: ${promocion}\nCantidad de meses: ${cantidadMeses}\nMeses a aplicar: ${mesesAplicar}\nComportamiento de pago: ${cpPago}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}`;
+        txtAreaResultadoParcial = `"TIPO DE SOLICITUD: Contención PORT OUT\nOperador: ${operador}\nPromoción ofrecida: ${promocion}\nCantidad de meses: ${cantidadMeses}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}`;
 
         if (ckbFecComprPago.checked) {
             txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nCompromiso de pago: ${fecComprPago}`;
@@ -163,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (ckbNuevoPlan.checked) {
-            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nNuevo plan: ${plan}`;
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nNuevo plan: ${plan}\nMeses a aplicar: ${mesesAplicar}`;
         }
 
         txtAreaResultadoParcial = `${txtAreaResultadoParcial}"`;
@@ -186,25 +122,21 @@ document.addEventListener('DOMContentLoaded', () => {
     //Botón para nueva plantilla
     btnNuevaPlant.addEventListener('click', () => {
         cboOperador.selectedIndex = 0;
-        cboPromocion.selectedIndex = 0;
-        cboCantMeses.selectedIndex = 0;
-        mesAplicar.value = "";
-        inputCpPago.value = "";
-        txtSnLlamada.value = "";
-        ckbIMR.checked = false;
-        txtIMR.disabled = true;
-        txtIMR.value = "No afecto a IMR";
-        ckbNuevoPlan.checked = false;
-        cboNuevoPlan.selectedIndex = 6;
-        cboNuevoPlan.disabled = true;
-        ckbFecComprPago.checked = false;
-        ckbDsctoVig.checked = false;
-        cboRequiereAnul.selectedIndex = 0;
-        cboRequiereAnul.disabled = true;
-        txtAreaCods.disabled = true;
-        txtAreaCods.textContent = "";
-        txtAreaResultado.textContent = "";
-        txtNumeroCli.value = "";
+        cboPromocion.value = "";
+        cboCantMeses.selectedIndex=0;
+        mesAplicar.value="";
+        mesAplicar.setAttribute('required',true);
+        txtSnLlamada.value="";
+        ckbNuevoPlan.checked=false;
+        cboNuevoPlan.selectedIndex=6;
+        cboNuevoPlan.disabled=true;
+        ckbFecComprPago.checked=false;
+        ckbDsctoVig.checked=false;
+        txtAreaCods.disabled=true;
+        txtAreaCods.value="";
+        txtAreaCods.setAttribute('required',true);
+        txtAreaResultado.textContent="";
+        txtNumeroCli.value="";
     });
 });
 

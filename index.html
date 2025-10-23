@@ -82,7 +82,15 @@
             </div>
             <div class="card" id="cardBono">
                 <div class="icon">🎁</div>
-                <h3>Bono</h3>
+                <h3>Bono de GB</h3>
+            </div>
+            <div class="card" id="cardNcFundada">
+                <div class="icon">📋</div>
+                <h3>Nota de Crédito Fundada</h3>
+            </div>
+            <div class="card" id="cardNcNoFundada">
+                <div class="icon">📄</div>
+                <h3>Nota de Crédito NO Fundada</h3>
             </div>
         </div>
         <div class="footer">
@@ -95,9 +103,17 @@
             window.location.href = "descuento.html";
         });
 
-        /* document.getElementById('cardBono').addEventListener('click', () => {
+        document.getElementById('cardBono').addEventListener('click', () => {
             window.location.href = "bono.html";
-        }); */
+        });
+
+        document.getElementById('cardNcFundada').addEventListener('click', () => {
+            window.location.href = "notaCreditoFundada.html";
+        });
+
+        document.getElementById('cardNcNoFundada').addEventListener('click', () => {
+            window.location.href = "notaCreditoNoFundada.html";
+        });
     </script>
 </body>
 

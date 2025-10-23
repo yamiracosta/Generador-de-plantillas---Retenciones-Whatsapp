@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/descuento.css">
-    <script src="js/descuento.js"></script>
-    <title>GENERADOR DE PLANTILLAS DE DESCUENTO</title>
+    <link rel="stylesheet" href="css/bono.css">
+    <script src="js/bono.js"></script>
+    <title>GENERADOR DE PLANTILLAS DE BONO</title>
 </head>
 
 <body>
     <a href="index.html" class="buttons" style="position: fixed; top: 8px; left: 20px; text-decoration: none; background-color: red;">⬅️ REGRESAR</a>
-
+    
     <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2>GENERADOR DE PLANTILLAS: DESCUENTO</h2>
+            <h2>GENERADOR DE PLANTILLAS: BONO</h2>
             <button class="buttons" type="button" id="btnNuevaPlantilla" style="height: fit-content;">+ NUEVA
                 PLANTILLA</button>
         </div>
@@ -49,7 +49,7 @@
                 <div class="field">
                     <label for="operador">Operador:</label>
                     <select required id="operador">
-                        <option value="">---Seleccionar operador---</option>
+                        <option value="">---Seleccionar---</option>
                         <option>Movistar</option>
                         <option>Entel</option>
                         <option>Bitel</option>
@@ -57,39 +57,21 @@
                 </div>
 
                 <div class="field">
-                    <label for="promocion">Promoción ofrecida:</label>
-                    <select required id="promocion">
-                        <option value="">---Seleccionar promoción---</option>
-                        <option>50% dscto.</option>
-                        <option>30% dscto.</option>
-                        <option>20% dscto.</option>
-                    </select>
+                    <label for="promocion">Bono ofrecido:</label>
+                    <input type="text" id="promocion">
                 </div>
 
                 <div class="field">
                     <label for="meses">Cantidad de meses:</label>
                     <select required id="meses">
                         <option value="">---Seleccionar---</option>
-                        <script>
-                            for (let i = 12; i >= 1; i--) {
-                                if (i !== 1) {
-                                    document.write(`<option>${i} meses</option>`);
-                                } else {
-                                    document.write(`<option>${i} mes</option>`);
-                                }
-                            }
-                        </script>
+                        <option value="">1 mes</option>
+                        <option value="">3 meses</option>
+                        <option value="">6 meses</option>
+                        <option value="">12 meses</option>
+                        <option value="">24 meses</option>
+                        <option value="">36 meses</option>
                     </select>
-                </div>
-
-                <div class="field">
-                    <label for="mesAplicar">Meses a aplicar:</label>
-                    <input required type="month" id="mesAplicar">
-                </div>
-
-                <div class="field">
-                    <label for="comportamientoPago">Comportamiento de pago (1-10):</label>
-                    <input required type="number" id="comportamientoPago" min="1" max="10">
                 </div>
 
                 <div class="field">
@@ -100,14 +82,6 @@
                 <div class="field">
                     <label for="vbSupervisor">VB del supervisor:</label>
                     <input required type="text" id="vbSupervisor" placeholder="---Ingresar VB del supervisor---">
-                </div>
-
-                <div class="field">
-                    <div class="field">
-                        <input type="checkbox" id="imrCheck">
-                        <label for="imrCheck">IMR del cliente</label>
-                    </div>
-                    <input required disabled type="number" step="0.01" id="imrText" placeholder="Ingrese IMR del cliente">
                 </div>
 
                 <div class="field">
@@ -132,6 +106,11 @@
                     </select>
                 </div>
 
+                <div class="field">
+                    <label for="mesAplicar">Meses a aplicar:</label>
+                    <input type="month" id="mesAplicar">
+                </div>
+
                 <div class="field" style="justify-content:left;">
                     <input type="checkbox" id="compromisoPago">
                     <label for="compromisoPago" id="lblCompromPago">Compromiso de pago</label>
@@ -140,17 +119,13 @@
                 <div class="field">
                     <div class="field">
                         <input type="checkbox" id="clienteDescuento">
-                        <label id="lblClienteDescVig" for="clienteDescuento">Cliente con descuento vigente:</label>
+                        <label id="lblClienteDescVig" for="clienteDescuento">Cliente con descuento vigente: Requiere anulación</label>
                     </div>
-                    <select required id="requiere">
-                        <option value="0">No requiere anulación</option>
-                        <option value="1">Requiere anulación</option>
-                    </select>
                 </div>
 
                 <div style="display: flex; flex-direction: column;">
                     <label for="resultado">Ingresar códigos (OCCS: obligatorio):</label>
-                    <textarea id="textAreaCodigos" style="border-color: black; margin-top: 5px; height: 75px;"></textarea>
+                    <textarea id="textAreaCodigos" style="border-color: black; margin-top: 5px; height: 114px;"></textarea>
                 </div>
 
             </form>
@@ -165,7 +140,7 @@
 
                     <button class="buttons" type="button" id="btnCopiar" style="background-color: rgb(230, 220, 17); color: black; font-weight: 700;">📋 Copiar</button>
                 </div>
-                <textarea id="resultado" readonly style="height: 422px; border-color: black;"></textarea>
+                <textarea id="resultado" readonly style="height: 383px; border-color: black;"></textarea>
             </div>
         </div>
 
