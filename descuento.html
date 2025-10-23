@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/descuento.css">
+    <script src="js/descuento.js"></script>
+    <title>GENERADOR DE PLANTILLAS DE DESCUENTO</title>
+</head>
+
+<body>
+
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>GENERADOR DE PLANTILLAS: DESCUENTO</h2>
+            <button class="buttons" type="button" id="btnNuevaPlantilla" style="height: fit-content;">+ NUEVA
+                PLANTILLA</button>
+        </div>
+
+        <div style="display: flex; margin-bottom: 20px; justify-content: space-between; align-items: center;">
+            <div class="field">
+                <label for="numeroCliente">Número del cliente:</label>
+                <input required type="number" id="numeroCliente" placeholder="Ingrese número del cliente"
+                    form="formCliente">
+            </div>
+
+            <div class="field">
+                <label for="usuarioE">Usuario E:</label>
+                <input required type="text" id="usuarioE" placeholder="Ingrese usuario E" form="formCliente">
+            </div>
+
+            <div class="field">
+                <label for="subcampaña">Subcampaña:</label>
+                <select required id="subcampaña" form="formCliente">
+                    <option value="">---Seleccionar---</option>
+                    <option>CONSULTA PREVIA</option>
+                    <option>CONTACTADOS</option>
+                    <option>CONSULTA PREVIA/DEUDA CEDENTE</option>
+                    <option>DEUDA CEDENTE</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between;">
+            <form id="formCliente" name="formCliente">
+
+                <div class="field">
+                    <label for="operador">Operador:</label>
+                    <select required id="operador">
+                        <option value="">---Seleccionar operador---</option>
+                        <option>Movistar</option>
+                        <option>Entel</option>
+                        <option>Bitel</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="promocion">Promoción ofrecida:</label>
+                    <select required id="promocion">
+                        <option value="">---Seleccionar promoción---</option>
+                        <option>50% dscto.</option>
+                        <option>30% dscto.</option>
+                        <option>20% dscto.</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="meses">Cantidad de meses:</label>
+                    <select required id="meses">
+                        <option value="">---Seleccionar---</option>
+                        <script>
+                            for (let i = 12; i >= 1; i--) {
+                                if (i !== 1) {
+                                    document.write(`<option>${i} meses</option>`);
+                                } else {
+                                    document.write(`<option>${i} mes</option>`);
+                                }
+                            }
+                        </script>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="mesAplicar">Meses a aplicar:</label>
+                    <input required type="month" id="mesAplicar">
+                </div>
+
+                <div class="field">
+                    <label for="comportamientoPago">Comportamiento de pago (1-10):</label>
+                    <input required type="number" id="comportamientoPago" min="1" max="10">
+                </div>
+
+                <div class="field">
+                    <label for="snLlamada">SN de la llamada:</label>
+                    <input required type="text" id="snLlamada" placeholder="Ingrese SN de la llamada">
+                </div>
+
+                <div class="field">
+                    <label for="vbSupervisor">VB del supervisor:</label>
+                    <input required type="text" id="vbSupervisor" placeholder="---Ingresar VB del supervisor---">
+                </div>
+
+                <div class="field">
+                    <div class="field">
+                        <input type="checkbox" id="imrCheck">
+                        <label for="imrCheck">IMR del cliente</label>
+                    </div>
+                    <input required disabled type="text" id="imrText" placeholder="Ingrese IMR del cliente">
+                </div>
+
+                <div class="field">
+                    <div class="field">
+                        <input type="checkbox" id="nuevoPlanCheck">
+                        <label for="nuevoPlanCheck">Nuevo plan: </label>
+                        
+                    </div>
+                    <select disabled id="nuevoPlanCbo">
+                        <option>Max 29.90</option>
+                        <option>Max 39.90</option>
+                        <option>Max 49.90</option>
+                        <option>Max 56.90</option>
+                        <option>Max 60.90</option>
+                        <option>Max Ilimitado 69.90</option>
+                        <option selected>Max Ilimitado 79.90</option>
+                        <option>Max Ilimitado 95.90</option>
+                        <option>Max Ilimitado 109.90</option>
+                        <option>Max Ilimitado 159.90</option>
+                        <option>Max Ilimitado 189.90</option>
+                        <option>Max Ilimitado 289.90</option>
+                    </select>
+                </div>
+
+                <div class="field" style="justify-content:left;">
+                    <input type="checkbox" id="compromisoPago">
+                    <label for="compromisoPago" id="lblCompromPago">Compromiso de pago</label>
+                </div>
+
+                <div class="field">
+                    <div class="field">
+                        <input type="checkbox" id="clienteDescuento">
+                        <label id="lblClienteDescVig" for="clienteDescuento">Cliente con descuento vigente:</label>
+                    </div>
+                    <select required id="requiere">
+                        <option value="0">No requiere anulación</option>
+                        <option value="1">Requiere anulación</option>
+                    </select>
+                </div>
+
+                <div style="display: flex; flex-direction: column;">
+                    <label for="resultado">Ingresar códigos (OCCS: obligatorio):</label>
+                    <textarea id="textAreaCodigos" style="border-color: black; margin-top: 5px; height: 75px;"></textarea>
+                </div>
+
+            </form>
+
+            <div class="result-section">
+
+                <button class="buttons" type="submit" id="mostrarBtn"
+                    style="background-color: green; margin-bottom: 10px;" form="formCliente">GENERAR PLANTILLA</button>
+
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <label for="resultado"><strong>PLANTILLA GENERADA:</strong></label>
+
+                    <button class="buttons" type="button" id="btnCopiar">📋 Copiar</button>
+                </div>
+                <textarea id="resultado" readonly style="height: 422px; border-color: black;"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
