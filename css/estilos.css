@@ -3,21 +3,22 @@ body {
   flex-direction: row;
   justify-content: center;
   font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #3c3f43;
+  background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
   color: #333;
 }
 
 .card{
-  background-color: #cbfff9;
+  background-color: #333;
   width: 65%;
   padding: 20px;
   padding-top: 0px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: white;
 }
 
 #formCliente{
-  background-color: #cbfff9;
+  background-color: #333;
   width: 50%;
   border-radius: 10px;
   border: 1px solid #e1e5ea;
@@ -44,16 +45,17 @@ body {
   display: flex;
   flex-direction: column;
   border: none;
+  width: 53.2%;
 }
 
 .result-section {
   display: flex;
   flex-direction: column;
-  width: 45%;
+  width: 40%;
   gap: 5px;
   height: fit-content;
-  background-color: #cbfff9;
-  border: 1px solid #e1e5ea;
+  background-color: #333;
+  border: none;
   border-radius: 10px;
 }
 
