@@ -21,9 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const cboSubcampaña = document.getElementById('subcampaña');
     const txtAreaMotivo = document.getElementById('motivo');
     const btnCopiar = document.getElementById('btnCopiar');
+    const ckbSegmento = document.getElementById('segmentoCheck');
+    const ckbCiclo = document.getElementById('cicloCheck');
+    const cboSegmento = document.getElementById('segmentoCbo');
+    const cboCiclo = document.getElementById('cicloCbo');
 
     //Inicializar los campos con textos predefinidos:
-    txtCampaña.value = "Retenciones Whatsapp";
+    txtCampaña.value = "RETENCIONES WHATSAPP";
     txtIMR.value = `"No afecta a IMR"`;
     txtMedidaCorrectiva.value = "Nota de Crédito";
     txtTipoRegistro.value = "Fundada";
@@ -71,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnNuevaPlantilla.addEventListener('click', () => {
         txtNumCliente.value = "";
         cboCallCenter.selectedIndex = 1;
-        txtCampaña.value = "Retenciones Whatsapp";
+        txtCampaña.value = "RETENCIONES WHATSAPP";
         txtIMR.value = `"No afecta a IMR"`;
         txtNumRecibo.value = "";
         txtMontoConIGV.value = "";
@@ -84,7 +88,30 @@ document.addEventListener('DOMContentLoaded', () => {
         txtSnLlamada.value = "";
         txtSupervisor.value = "GIANFRANCO PAZ";
         txtAreaResultado.value = "";
+        ckbSegmento.checked=false;
+        ckbCiclo.checked=false;
+        cboSegmento.disabled=true;
+        cboSegmento.selectedIndex=0;
+        cboCiclo.disabled=true;
+        cboCiclo.selectedIndex=0;
     });
+
+    //Activar los combos de ciclo y segmento
+    ckbSegmento.addEventListener('change', () => {
+        if (ckbSegmento.checked) {
+            cboSegmento.disabled = false;
+        } else {
+            cboSegmento.disabled = true;
+        }
+    })
+
+    ckbCiclo.addEventListener('change', () => {
+        if (ckbCiclo.checked) {
+            cboCiclo.disabled = false;
+        } else {
+            cboCiclo.disabled = true;
+        }
+    })
 
     //BOTON "GENERAR PLANTILLA":
     form.addEventListener('submit', (e) => {
@@ -113,6 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let usuarioResponsable = txtUsuarioResponsable.value; //OPCIONAL
         let sn = txtSnLlamada.value;
         let vbSupervisor = txtSupervisor.value;
+        let segmento = cboSegmento.options[cboSegmento.selectedIndex].text;
+        let ciclo = cboCiclo.options[cboCiclo.selectedIndex].text;
 
         //Escribir plantilla
         txtAreaResultadoParcial = `N° de teléfono: ${numCliente}\nNombre del Call Center: ${callCenter}\nCampaña: ${campaña}\nIMR: ${imr}\nN° de recibo: ${nroRecibo}\nImporte sin IGV: S/. ${montoSinIGV}\nMotivo: ${motivo}\nDescarte realizado: ${descarte}\nMedida correctiva: ${medidaCorrectiva}\nTipo de registro: ${tipoRegistro}\nÁrea a imputar: ${area}`;
@@ -123,7 +152,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         //Rellenar los demás campos como prosigue
-        txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}\n\n${numCliente} // ${subCampaña} // ${usuarioE}`;
+        txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}\n\nCampaña: ${subCampaña}\nN° de teléfono: ${numCliente}\nUsuario: ${usuarioE}`;
+
+        if (ckbSegmento.checked) {
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nSegmento: ${segmento}`;
+        }
+
+        if (ckbCiclo.checked) {
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nCiclo de facturación: ${ciclo}`;
+        }
 
         //Mostrar la plantilla generada
         txtAreaResultado.value = txtAreaResultadoParcial;

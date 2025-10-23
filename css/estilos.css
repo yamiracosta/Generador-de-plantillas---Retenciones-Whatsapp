@@ -84,6 +84,10 @@ textarea {
   border-color: #495057;
 }
 
+input[type=checkbox]{
+  margin-bottom: 0;
+}
+
 label {
   font-weight: bold;
 }

@@ -11,12 +11,14 @@
     <title>GENERADOR DE PLANTILLAS DE BONO DE GB</title>
 </head>
 
-<body>    
+<body>
     <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-            <a href="index.html" class="buttons" style="text-decoration: none; background-color: #dc3545;">⬅️ REGRESAR</a>
+            <a href="index.html" class="buttons" style="text-decoration: none; background-color: #dc3545;">⬅️
+                REGRESAR</a>
             <h2>GENERADOR DE PLANTILLAS: BONO DE GB</h2>
-            <button class="buttons" type="button" id="btnNuevaPlantilla" style="height: fit-content; background-color: #0d6efd;">➕ NUEVA
+            <button class="buttons" type="button" id="btnNuevaPlantilla"
+                style="height: fit-content; background-color: #0d6efd;">➕ NUEVA
                 PLANTILLA</button>
         </div>
 
@@ -50,9 +52,9 @@
                     <label for="operador">Operador:</label>
                     <select required id="operador">
                         <option value="">------Seleccionar------</option>
-                        <option>Movistar</option>
-                        <option>Entel</option>
-                        <option>Bitel</option>
+                        <option>MOVISTAR</option>
+                        <option>ENTEL</option>
+                        <option>BITEL</option>
                     </select>
                 </div>
 
@@ -65,12 +67,12 @@
                     <label for="meses">Cantidad de meses:</label>
                     <select required id="meses">
                         <option value="">------Seleccionar------</option>
-                        <option value="">1 mes</option>
-                        <option value="">3 meses</option>
-                        <option value="">6 meses</option>
-                        <option value="">12 meses</option>
-                        <option value="">24 meses</option>
-                        <option value="">36 meses</option>
+                        <option value="">1 MES</option>
+                        <option value="">3 MESES</option>
+                        <option value="">6 MESES</option>
+                        <option value="">12 MESES</option>
+                        <option value="">24 MESES</option>
+                        <option value="">36 MESES</option>
                     </select>
                 </div>
 
@@ -88,21 +90,21 @@
                     <div class="field">
                         <input type="checkbox" id="nuevoPlanCheck">
                         <label for="nuevoPlanCheck">Nuevo plan: </label>
-                        
+
                     </div>
                     <select disabled id="nuevoPlanCbo">
-                        <option>Max 29.90</option>
-                        <option>Max 39.90</option>
-                        <option>Max 49.90</option>
-                        <option>Max 56.90</option>
-                        <option>Max 60.90</option>
-                        <option>Max Ilimitado 69.90</option>
-                        <option selected>Max Ilimitado 79.90</option>
-                        <option>Max Ilimitado 95.90</option>
-                        <option>Max Ilimitado 109.90</option>
-                        <option>Max Ilimitado 159.90</option>
-                        <option>Max Ilimitado 189.90</option>
-                        <option>Max Ilimitado 289.90</option>
+                        <option>MAX 29.90</option>
+                        <option>MAX 39.90</option>
+                        <option>MAX 49.90</option>
+                        <option>MAX 56.90</option>
+                        <option>MAX 60.90</option>
+                        <option>MAX ILIMITADO 69.90</option>
+                        <option selected>MAX ILIMITADO 79.90</option>
+                        <option>MAX ILIMITADO 95.90</option>
+                        <option>MAX ILIMITADO 109.90</option>
+                        <option>MAX ILIMITADO 159.90</option>
+                        <option>MAX ILIMITADO 189.90</option>
+                        <option>MAX ILIMITADO 289.90</option>
                     </select>
                 </div>
 
@@ -124,7 +126,7 @@
                 </div>
 
                 <div style="display: flex; flex-direction: column;">
-                    <label for="resultado">Ingresar códigos (OCCS: obligatorio):</label>
+                    <label for="resultado">Ingresar OCCs:</label>
                     <textarea id="textAreaCodigos" style="margin-top: 5px; height: 114px;"></textarea>
                 </div>
 
@@ -132,15 +134,49 @@
 
             <div class="result-section">
 
-                <button class="buttons" type="submit" id="mostrarBtn"
-                    style="margin-bottom: 10px;" form="formCliente">✅ GENERAR PLANTILLA</button>
+                <!--INCLUIR CAMPOS DE SEGMENTO Y CICLO DE FACTURACION (opcional)-->
+                <div class="field">
+                    <div class="field" style="margin-bottom: 0;">
+                        <input type="checkbox" id="segmentoCheck">
+                        <label for="segmentoCbo">Segmento:</label>
+                    </div>
+                    <select disabled name="segmentoCbo" id="segmentoCbo">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="P">P</option>
+                        <option value="S">S</option>
+                    </select>
+                    <div class="field" style="margin-bottom: 0;">
+                        <div class="field" style="margin-bottom: 0;">
+                            <input type="checkbox" id="cicloCheck">
+                            <label for="cicloText">Ciclo fact.:</label>
+                        </div>
+                        <select disabled name="cicloCbo" id="cicloCbo">
+                            <script>
+                                const excluir = [2, 7, 13, 15, 17, 21, 23, 27];
+                                for (let i = 1; i <= 28; i++) {
+                                    if (!excluir.includes(i)) {
+                                        document.write(`<option>${i}</option>`);
+                                    }
+                                }
+                            </script>
+                        </select>
+                    </div>
+                </div>
+
+                <!------------------------------------------------------------->
+
+                <button class="buttons" type="submit" id="mostrarBtn" style="margin-bottom: 10px;" form="formCliente">✅
+                    GENERAR PLANTILLA</button>
 
                 <div style="display: flex; align-items: center; justify-content: space-between;">
                     <label for="resultado"><strong>PLANTILLA GENERADA:</strong></label>
 
-                    <button class="buttons" type="button" id="btnCopiar" style="color: black; font-weight: 700;">📋 Copiar</button>
+                    <button class="buttons" type="button" id="btnCopiar" style="color: black; font-weight: 700;">📋
+                        Copiar</button>
                 </div>
-                <textarea id="resultado" readonly style="height: 383px;"></textarea>
+                <textarea id="resultado" readonly style="height: 340px;"></textarea>
             </div>
         </div>
 

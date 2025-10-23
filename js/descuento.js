@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const cboCantMeses = document.getElementById('meses');
     const txtSnLlamada = document.getElementById('snLlamada');
     const txtNumeroCli = document.getElementById('numeroCliente');
+    const ckbSegmento = document.getElementById('segmentoCheck');
+    const ckbCiclo = document.getElementById('cicloCheck');
+    const cboSegmento = document.getElementById('segmentoCbo');
+    const cboCiclo = document.getElementById('cicloCbo');
 
     //--------------------------------------------------------------------------------------
     //Habilitar o deshabilitar el campo de texto de IMR
@@ -178,6 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let numeroCliente = document.getElementById('numeroCliente').value;
         let usuarioE = document.getElementById('usuarioE').value;
         let subcampaña = document.getElementById('subcampaña').value;
+        let segmento = cboSegmento.options[cboSegmento.selectedIndex].text;
+        let ciclo = cboCiclo.options[cboCiclo.selectedIndex].text;
 
         //Escribir plantilla
         txtAreaResultadoParcial = `"TIPO DE SOLICITUD: Contención/Competencia\nIMR del cliente: ${imr}\nOperador: ${operador}\nPromoción ofrecida: ${promocion}\nCantidad de meses: ${cantidadMeses}\nMeses a aplicar: ${mesesAplicar}\nComportamiento de pago: ${cpPago}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}`;
@@ -201,7 +207,15 @@ document.addEventListener('DOMContentLoaded', () => {
         txtAreaResultadoParcial = `${txtAreaResultadoParcial}"`;
 
         //Culminar escribiendo la información para que el BO la revise:
-        txtAreaResultadoParcial = `${txtAreaResultadoParcial}\n\n${numeroCliente} // ${usuarioE} // ${subcampaña}`;
+        txtAreaResultadoParcial = `${txtAreaResultadoParcial}\n\nCampaña: ${subcampaña}\nN° de teléfono: ${numeroCliente}\nUsuario: ${usuarioE}`;
+
+        if (ckbSegmento.checked) {
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nSegmento: ${segmento}`;
+        }
+
+        if (ckbCiclo.checked) {
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nCiclo de facturación: ${ciclo}`;
+        }
 
         //Guardar todo el texto en la variables global y mostrarla en el campo de texto:
         txtAreaResultado.textContent = txtAreaResultadoParcial;
@@ -226,6 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ckbIMR.checked = false;
         txtIMR.disabled = true;
         txtIMR.value = "No afecto a IMR";
+        txtSuper.value = "GIANFRANCO PAZ";
         ckbNuevoPlan.checked = false;
         cboNuevoPlan.selectedIndex = 6;
         cboNuevoPlan.disabled = true;
@@ -237,7 +252,30 @@ document.addEventListener('DOMContentLoaded', () => {
         txtAreaCods.value = "";
         txtAreaResultado.textContent = "";
         txtNumeroCli.value = "";
+        ckbSegmento.checked=false;
+        ckbCiclo.checked=false;
+        cboSegmento.disabled=true;
+        cboSegmento.selectedIndex=0;
+        cboCiclo.disabled=true;
+        cboCiclo.selectedIndex=0;
     });
+
+    //Activar los combos de ciclo y segmento
+    ckbSegmento.addEventListener('change', () => {
+        if (ckbSegmento.checked) {
+            cboSegmento.disabled = false;
+        } else {
+            cboSegmento.disabled = true;
+        }
+    })
+
+    ckbCiclo.addEventListener('change', () => {
+        if (ckbCiclo.checked) {
+            cboCiclo.disabled = false;
+        } else {
+            cboCiclo.disabled = true;
+        }
+    })
 });
 
 function mostrarFechComprPago() {

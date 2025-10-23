@@ -43,17 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Bloquear caracteres no válidos (solo permitir E al inicio y números después)
     usuarioE.addEventListener('keydown', (e) => {
-        const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight'];
-        if (usuarioE.selectionStart === 0 && e.key.toUpperCase() === 'E') return; // permitir la E al inicio
-        if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key)) {
-            e.preventDefault();
-        }
-    });
-
-
-    // Bloquear caracteres no válidos (solo permitir E al inicio y números después)
-    usuarioE.addEventListener('keydown', (e) => {
-        const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight'];
+        const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowDown'];
         if (usuarioE.selectionStart === 0 && e.key.toUpperCase() === 'E') return; // permitir la E al inicio
         if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key)) {
             e.preventDefault();
