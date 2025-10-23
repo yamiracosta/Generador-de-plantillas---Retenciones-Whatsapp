@@ -8,7 +8,7 @@ body {
 }
 
 .card{
-  background-color: #ffffff;
+  background-color: #cbfff9;
   width: 65%;
   padding: 20px;
   padding-top: 0px;
@@ -17,7 +17,7 @@ body {
 }
 
 #formCliente{
-  background-color: #f9fafc;
+  background-color: #cbfff9;
   width: 50%;
   border-radius: 10px;
   border: 1px solid #e1e5ea;
@@ -44,7 +44,7 @@ body {
   width: 45%;
   gap: 5px;
   height: fit-content;
-  background-color: #f9fafc;
+  background-color: #cbfff9;
   border: 1px solid #e1e5ea;
   border-radius: 10px;
 }
@@ -66,12 +66,12 @@ input,
 select,
 textarea {
   padding: 5px 8px;
-  border: 1px solid #ccc;
+  border: 0.2px solid #495057;
   border-radius: 5px;
   font-family: inherit;
   font-size: 14px;
   background-color: #fff;
-  border-color: black;
+  border-color: #495057;
 }
 
 label {
@@ -81,4 +81,9 @@ label {
 #btnCopiar {
   text-align: center;
   font-size: small;
+  background-color: #ffc107;
+}
+
+#mostrarBtn{
+    background-color: #198754;
 }

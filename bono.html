@@ -4,19 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bono.css">
+    <link rel="stylesheet" href="css/estilos.css">
     <link rel="shortcut icon" href="https://cdn-icons-png.freepik.com/512/10328/10328754.png" type="image/x-icon">
     <script src="js/bono.js"></script>
-    <title>GENERADOR DE PLANTILLAS DE BONO</title>
+    <title>GENERADOR DE PLANTILLAS DE BONO DE GB</title>
 </head>
 
-<body>
-    <a href="index.html" class="buttons" style="position: fixed; top: 8px; left: 20px; text-decoration: none; background-color: red;">⬅️ REGRESAR</a>
-    
+<body>    
     <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2>GENERADOR DE PLANTILLAS: BONO</h2>
-            <button class="buttons" type="button" id="btnNuevaPlantilla" style="height: fit-content;">+ NUEVA
+            <a href="index.html" class="buttons" style="text-decoration: none; background-color: #dc3545;">⬅️ REGRESAR</a>
+            <h2>GENERADOR DE PLANTILLAS: BONO DE GB</h2>
+            <button class="buttons" type="button" id="btnNuevaPlantilla" style="height: fit-content; background-color: #0d6efd;">➕ NUEVA
                 PLANTILLA</button>
         </div>
 
@@ -50,7 +49,7 @@
                 <div class="field">
                     <label for="operador">Operador:</label>
                     <select required id="operador">
-                        <option value="">---Seleccionar---</option>
+                        <option value="">------Seleccionar------</option>
                         <option>Movistar</option>
                         <option>Entel</option>
                         <option>Bitel</option>
@@ -65,7 +64,7 @@
                 <div class="field">
                     <label for="meses">Cantidad de meses:</label>
                     <select required id="meses">
-                        <option value="">---Seleccionar---</option>
+                        <option value="">------Seleccionar------</option>
                         <option value="">1 mes</option>
                         <option value="">3 meses</option>
                         <option value="">6 meses</option>
@@ -126,7 +125,7 @@
 
                 <div style="display: flex; flex-direction: column;">
                     <label for="resultado">Ingresar códigos (OCCS: obligatorio):</label>
-                    <textarea id="textAreaCodigos" style="border-color: black; margin-top: 5px; height: 114px;"></textarea>
+                    <textarea id="textAreaCodigos" style="margin-top: 5px; height: 114px;"></textarea>
                 </div>
 
             </form>
@@ -134,14 +133,14 @@
             <div class="result-section">
 
                 <button class="buttons" type="submit" id="mostrarBtn"
-                    style="background-color: green; margin-bottom: 10px;" form="formCliente">GENERAR PLANTILLA</button>
+                    style="margin-bottom: 10px;" form="formCliente">✅ GENERAR PLANTILLA</button>
 
                 <div style="display: flex; align-items: center; justify-content: space-between;">
                     <label for="resultado"><strong>PLANTILLA GENERADA:</strong></label>
 
-                    <button class="buttons" type="button" id="btnCopiar" style="background-color: rgb(230, 220, 17); color: black; font-weight: 700;">📋 Copiar</button>
+                    <button class="buttons" type="button" id="btnCopiar" style="color: black; font-weight: 700;">📋 Copiar</button>
                 </div>
-                <textarea id="resultado" readonly style="height: 383px; border-color: black;"></textarea>
+                <textarea id="resultado" readonly style="height: 383px;"></textarea>
             </div>
         </div>
 

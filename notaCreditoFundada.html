@@ -4,19 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/notacreditofundada.css">
+    <link rel="stylesheet" href="css/estilos.css">
     <link rel="shortcut icon" href="https://cdn-icons-png.freepik.com/512/10328/10328754.png" type="image/x-icon">
     <script src="js/notacreditofundada.js"></script>
     <title>GENERADOR DE PLANTILLAS DE NC FUNDADA</title>
 </head>
 
-<body>
-    <a href="index.html" class="buttons" style="position: fixed; top: 8px; left: 20px; text-decoration: none; background-color: red;">⬅️ REGRESAR</a>
-    
+<body>    
     <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2>GENERADOR DE PLANTILLAS: NOTA DE CREDITO FUNDADA</h2>
-            <button class="buttons" type="button" id="btnNuevaPlantilla" style="height: fit-content;">+ NUEVA
+        <div style="display: flex; justify-content: space-between; align-items: center; text-align: center;">
+            <a href="index.html" class="buttons" style="text-decoration: none; background-color: #dc3545;">⬅️ REGRESAR</a>
+            <h2>GENERADOR DE PLANTILLAS: NC FUNDADA</h2>
+            <button class="buttons" type="button" id="btnNuevaPlantilla" style="height: fit-content; background-color: #0d6efd;">➕ NUEVA
                 PLANTILLA</button>
         </div>
 
@@ -77,7 +76,7 @@
                         <input style="width: 30%;" type="number" step="0.01" id="montoConIGV">
                     </div>
                     <button id="btnCalcularMontoSinIGV" type="button" class="buttons"
-                        style="width: 5%; height: 30px; display: flex; align-items: center; text-align: center; justify-content: center;">🧮</button>
+                        style="width: 5%; height: 30px; display: flex; align-items: center; text-align: center; justify-content: center; background-color: #6c757d;">🧮</button>
                     <input required disabled style="width: 36%;" type="number" name="montoSinIGV" id="montoSinIGV">
                 </div>
 
@@ -132,14 +131,14 @@
             <div class="result-section">
 
                 <button class="buttons" type="submit" id="mostrarBtn"
-                    style="background-color: green; margin-bottom: 10px;" form="formCliente">GENERAR PLANTILLA</button>
+                    style="margin-bottom: 10px;" form="formCliente">✅ GENERAR PLANTILLA</button>
 
                 <div style="display: flex; align-items: center; justify-content: space-between;">
                     <label for="resultado"><strong>PLANTILLA GENERADA:</strong></label>
 
-                    <button class="buttons" type="button" id="btnCopiar" style="background-color: rgb(230, 220, 17); color: black; font-weight: 700;">📋 Copiar</button>
+                    <button class="buttons" type="button" id="btnCopiar" style="color: black; font-weight: 700;">📋 Copiar</button>
                 </div>
-                <textarea id="resultado" readonly style="height: 480px; border-color: black;"></textarea>
+                <textarea id="resultado" readonly style="height: 480px;"></textarea>
             </div>
         </div>
 
