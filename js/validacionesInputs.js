@@ -13,10 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
         numeroCliente.value = value;
     });
 
-    // Bloquear letras o símbolos
+    // Bloquear letras o símbolos, pero permitir pegar (Ctrl+V / Cmd+V)
     numeroCliente.addEventListener('keydown', (e) => {
         const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight'];
-        if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key)) {
+        const isCtrlV = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v'; // Ctrl+V o Cmd+V
+        const isCtrlC = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c'; // Ctrl+C
+        const isCtrlX = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'x'; // Ctrl+X
+
+        if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key) && !isCtrlV && !isCtrlC && !isCtrlX) {
             e.preventDefault();
         }
     });
@@ -63,10 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
         snLlamada.value = snLlamada.value.replace(/\D/g, '');
     });
 
-    // Bloquear letras o símbolos
+    // Bloquear letras o símbolos, pero permitir copiar, pegar y cortar (Ctrl+C / Ctrl+V / Ctrl+X)
     snLlamada.addEventListener('keydown', (e) => {
         const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight'];
-        if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key)) {
+        const isCtrlV = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v'; // pegar
+        const isCtrlC = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c'; // copiar
+        const isCtrlX = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'x'; // cortar
+
+        if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key) && !isCtrlV && !isCtrlC && !isCtrlX) {
             e.preventDefault();
         }
     });

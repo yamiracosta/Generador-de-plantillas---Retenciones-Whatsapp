@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cboRequiereAnul.selectedIndex = 0;
         cboRequiereAnul.disabled = true;
         txtAreaCods.disabled = true;
-        txtAreaCods.textContent = "";
+        txtAreaCods.value = "";
         txtAreaResultado.textContent = "";
         txtNumeroCli.value = "";
     });
