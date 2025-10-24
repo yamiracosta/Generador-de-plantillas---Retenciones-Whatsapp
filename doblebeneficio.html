@@ -6,24 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="shortcut icon" href="https://cdn-icons-png.freepik.com/512/10328/10328754.png" type="image/x-icon">
-    <script src="js/bono.js"></script>
+    <script src="js/doblebeneficio.js"></script>
     <script src="js/validacionesInputs.js"></script>
-    <title>GENERADOR DE PLANTILLAS DE BONO DE GB</title>
+    <title>GENERADOR DE PLANTILLAS DE DOBLE BENEFICIO</title>
 </head>
 
 <body>
 
     <div class="card">
-        <div id="cabecera" style="display: flex; justify-content: space-between; align-items: center; text-align: center;">
+        <div id="cabecera"
+            style="display: flex; justify-content: space-between; align-items: center; text-align: center;">
             <a href="index.html" class="buttons" style="text-decoration: none; background-color: #dc3545;">⬅️
                 REGRESAR</a>
-            <h2>GENERADOR DE PLANTILLAS: BONO DE GB</h2>
+            <h2>GENERADOR DE PLANTILLAS: DOBLE BENEFICIO</h2>
             <button class="buttons" type="button" id="btnNuevaPlantilla"
                 style="height: fit-content; background-color: #0d6efd;">➕ NUEVA
                 PLANTILLA</button>
         </div>
 
-        <div id="cntndr-fila2" style="display: flex; margin-bottom: 20px; justify-content: space-between; align-items: center;">
+        <div id="cntndr-fila2"
+            style="display: flex; margin-bottom: 20px; justify-content: space-between; align-items: center;">
             <div id="cntndr-numcliente" class="field2">
                 <label for="numeroCliente">Número del cliente:</label>
                 <input required type="number" id="numeroCliente" form="formCliente">
@@ -59,49 +61,21 @@
                     </select>
                 </div>
 
-                <div class="field">
-                    <label for="promocion">Bono ofrecido:</label>
-                    <select name="promocion" id="promocion">
-                        <option value="5 GB">5 GB</option>
-                        <option value="10 GB">10 GB</option>
-                        <option value="30 GB">30 GB</option>
-                        <option value="30 GB para Tik Tok">30 GB para Tik Tok</option>
-                        <option value="35 GB">35 GB</option>
-                        <option value="40 GB">40 GB</option>
-                        <option value="55 GB">55 GB</option>
-                        <option value="95 GB">95 GB</option>
-                        <option value="100 GB">100 GB</option>
-                    </select>
-                </div>
-
-                <div class="field">
-                    <label for="meses">Cantidad de meses:</label>
-                    <select required id="meses">
+                <div style="display: flex; flex-wrap: wrap; align-items: center; margin-bottom: 20px; column-gap: 20px;" class="field">
+                    <label for="promocion">Promoción ofrecida:</label>
+                    <select style="flex-grow: 1; min-width: 300px;" required id="promocion">
                         <option value="">------Seleccionar------</option>
-                        <option value="">1 MES</option>
-                        <option value="">3 MESES</option>
-                        <option value="">6 MESES</option>
-                        <option value="">12 MESES</option>
-                        <option value="">24 MESES</option>
-                        <option value="">36 MESES</option>
+                        <option value="descuento_bono">50% por 6 meses + 100GB AV por 6 meses</option>
+                        <option value="descuento_bono">50% por 3 meses + 30 GB Tik Tok por 6 meses</option>
+                        <option value="doble_bono">30 GB Tiktok por 3 meses + 30 GB por 6 meses</option>
+                        <option value="doble_descuento">CF S/ 19.95 por 3 meses >> CF S/ 39.90 por 9 meses</option>
                     </select>
-                </div>
-
-                <div class="field">
-                    <label for="snLlamada">SN de la llamada:</label>
-                    <input required type="text" id="snLlamada" placeholder="Ingrese SN de la llamada">
-                </div>
-
-                <div class="field">
-                    <label for="vbSupervisor">VB del supervisor:</label>
-                    <input required type="text" id="vbSupervisor" placeholder="---Ingresar VB del supervisor---">
                 </div>
 
                 <div class="field">
                     <div class="field">
                         <input type="checkbox" id="nuevoPlanCheck">
                         <label for="nuevoPlanCheck">Nuevo plan: </label>
-
                     </div>
                     <select disabled id="nuevoPlanCbo">
                         <option>MAX 29.90</option>
@@ -121,7 +95,31 @@
 
                 <div class="field">
                     <label for="mesAplicar">Meses a aplicar:</label>
-                    <input type="month" id="mesAplicar">
+                    <input disabled required type="month" id="mesAplicar">
+                </div>
+
+                <div class="field">
+                    <label style="width: 66%;" for="comportamientoPago">Comportamiento de pago (1-10):</label>
+                    <input disabled style="width: 34%;" required type="number" id="comportamientoPago" min="1" max="10"
+                        placeholder="Ingrese comportamiento de pago">
+                </div>
+
+                <div class="field">
+                    <label for="snLlamada">SN de la llamada:</label>
+                    <input required type="text" id="snLlamada" placeholder="Ingrese SN de la llamada">
+                </div>
+
+                <div class="field">
+                    <label for="vbSupervisor">VB del supervisor:</label>
+                    <input required type="text" id="vbSupervisor" placeholder="---Ingresar VB del supervisor---">
+                </div>
+
+                <div class="field">
+                    <div class="field">
+                        <input type="checkbox" id="imrCheck">
+                        <label for="imrText">IMR del cliente</label>
+                    </div>
+                    <input required disabled type="text" id="imrText" placeholder="Ingrese IMR del cliente">
                 </div>
 
                 <div class="field" style="justify-content:left;">
@@ -132,19 +130,22 @@
                 <div class="field">
                     <div class="field">
                         <input type="checkbox" id="clienteDescuento">
-                        <label id="lblClienteDescVig" for="clienteDescuento">Cliente con descuento vigente: Requiere anulación</label>
+                        <label id="lblClienteDescVig" for="clienteDescuento">Cliente con descuento vigente:</label>
                     </div>
+                    <select required id="requiere">
+                        <option value="0">No requiere anulación</option>
+                        <option value="1">Requiere anulación</option>
+                    </select>
                 </div>
 
-                <div id="cntndr-cods" style="display: flex; flex-direction: column;">
-                    <label for="resultado">Ingresar OCCs:</label>
-                    <textarea id="textAreaCodigos" style="margin-top: 5px; height: 114px;"></textarea>
+                <div style="display: flex; flex-direction: column;">
+                    <label for="resultado">Ingresar códigos (OCCS: obligatorio):</label>
+                    <textarea id="textAreaCodigos" style="margin-top: 5px; height: 75px;"></textarea>
                 </div>
 
             </form>
 
             <div class="result-section">
-
                 <!--INCLUIR CAMPOS DE SEGMENTO Y CICLO DE FACTURACION (opcional)-->
                 <div id="cntndr-segmentociclo" class="field">
                     <div class="field" style="margin-bottom: 0;">
@@ -187,7 +188,7 @@
                     <button class="buttons" type="button" id="btnCopiar" style="color: black; font-weight: 700;">📋
                         Copiar</button>
                 </div>
-                <textarea id="resultado" readonly style="height: 340px;"></textarea>
+                <textarea id="resultado" readonly></textarea>
             </div>
         </div>
 

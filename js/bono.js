@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let txtSuper = document.getElementById('vbSupervisor');
-    let ckbDsctoVig = document.getElementById('clienteDescuento');
-    let cboRequiereAnul = document.getElementById('requiere');
-    let txtAreaCods = document.getElementById('textAreaCodigos');
-    let ckbNuevoPlan = document.getElementById('nuevoPlanCheck');
-    let cboNuevoPlan = document.getElementById('nuevoPlanCbo');
-    let lblComprPago = document.getElementById('lblCompromPago');
-    let mesAplicar = document.getElementById('mesAplicar');
-    let ckbFecComprPago = document.getElementById('compromisoPago');
+    const txtSuper = document.getElementById('vbSupervisor');
+    const ckbDsctoVig = document.getElementById('clienteDescuento');
+    const cboRequiereAnul = document.getElementById('requiere');
+    const txtAreaCods = document.getElementById('textAreaCodigos');
+    const ckbNuevoPlan = document.getElementById('nuevoPlanCheck');
+    const cboNuevoPlan = document.getElementById('nuevoPlanCbo');
+    const lblComprPago = document.getElementById('lblCompromPago');
+    const dtChsrMesAplicar = document.getElementById('mesAplicar');
+    const ckbFecComprPago = document.getElementById('compromisoPago');
     const form = document.getElementById('formCliente');
     const txtAreaResultado = document.getElementById('resultado');
     const btnCopiar = document.getElementById('btnCopiar');
@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const ckbCiclo = document.getElementById('cicloCheck');
     const cboSegmento = document.getElementById('segmentoCbo');
     const cboCiclo = document.getElementById('cicloCbo');
+    const txtUsuarioE = document.getElementById('usuarioE');
+    const cboSubcampaña = document.getElementById('subcampaña');
 
     //-------------------------------------------------------------------------------------------
     //Habilitar o deshabilitar la opción de cliente con descuento vigente
@@ -32,12 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
             txtAreaCods.focus();
         } else {
             txtAreaCods.disabled = true;
-            txtAreaCods.setAttribute('required',true);
+            txtAreaCods.setAttribute('required',false);
         }
     });
   
     //Iniciar el cboMeses deshabilitado
-    mesAplicar.disabled=true;
+    dtChsrMesAplicar.disabled=true;
 
     //-------------------------------------------------------------------------------------------
     //Habilitar o deshabilitar el texto de nuevo plan
@@ -45,13 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ckbNuevoPlan.addEventListener('change', () => {
         if (ckbNuevoPlan.checked) {
             cboNuevoPlan.disabled = false;
-            mesAplicar.disabled = false;
-            mesAplicar.setAttribute('required', true);
+            dtChsrMesAplicar.disabled = false;
+            dtChsrMesAplicar.setAttribute('required', true);
         } else {
             cboNuevoPlan.disabled = true;
-            mesAplicar.disabled = true;
-            mesAplicar.setAttribute('required', false);
-            mesAplicar.value="";
+            dtChsrMesAplicar.disabled = true;
+            dtChsrMesAplicar.setAttribute('required', false);
+            dtChsrMesAplicar.value="";
         }
     });
 
@@ -71,21 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
         let txtAreaResultadoParcial = "";
 
         //Obtener valores
-        let operador = document.getElementById('operador').value;
-        let promocion = document.getElementById('promocion').value;
+        let operador = cboOperador.value;
+        let promocion = cboPromocion.value;
         let cantidadMeses = cboCantMeses.options[cboCantMeses.selectedIndex].text;
-        let mesesAplicar = formatearMes(mesAplicar.value);
-        let sn = document.getElementById('snLlamada').value;
-        let vbSupervisor = document.getElementById('vbSupervisor').value;
+        let mesesAplicar = formatearMes(dtChsrMesAplicar.value);
+        let sn = txtSnLlamada.value;
+        let vbSupervisor = txtSuper.value;
 
         let fecComprPago = mostrarFechComprPago();
         let clientDsctVig = document.getElementById('lblClienteDescVig').textContent;
         let codsOCC = txtAreaCods.value;
         let plan = cboNuevoPlan.options[cboNuevoPlan.selectedIndex].text;
 
-        let numeroCliente = document.getElementById('numeroCliente').value;
-        let usuarioE = document.getElementById('usuarioE').value;
-        let subcampaña = document.getElementById('subcampaña').value;
+        let numeroCliente = txtNumeroCli.value;
+        let usuarioE = txtUsuarioE.value;
+        let subcampaña = cboSubcampaña.value;
         let segmento = cboSegmento.options[cboSegmento.selectedIndex].text;
         let ciclo = cboCiclo.options[cboCiclo.selectedIndex].text;
 
@@ -123,10 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Botón para copiar la plantilla generada
     btnCopiar.addEventListener('click', () => {
-        const textarea = document.getElementById('resultado');
-        textarea.select();
-        textarea.setSelectionRange(0, 99999); // Para móviles
-        navigator.clipboard.writeText(textarea.value)
+        txtAreaResultado.select();
+        txtAreaResultado.setSelectionRange(0, 99999); // Para móviles
+        navigator.clipboard.writeText(txtAreaResultado.value)
     });
 
     //Botón para nueva plantilla
@@ -134,8 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
         cboOperador.selectedIndex = 0;
         cboPromocion.value = "";
         cboCantMeses.selectedIndex=0;
-        mesAplicar.value="";
-        mesAplicar.setAttribute('required',true);
+        dtChsrMesAplicar.value="";
+        dtChsrMesAplicar.setAttribute('required',true);
         txtSnLlamada.value="";
         ckbNuevoPlan.checked=false;
         cboNuevoPlan.selectedIndex=6;

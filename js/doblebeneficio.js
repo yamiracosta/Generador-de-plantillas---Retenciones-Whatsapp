@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cboNuevoPlan = document.getElementById('nuevoPlanCbo');
     const lblComprPago = document.getElementById('lblCompromPago');
     const mesAplicar = document.getElementById('mesAplicar');
-    const txtCpPago = document.getElementById('comportamientoPago');
+    const inputCpPago = document.getElementById('comportamientoPago');
     const ckbFecComprPago = document.getElementById('compromisoPago');
     const form = document.getElementById('formCliente');
     const txtAreaResultado = document.getElementById('resultado');
@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnNuevaPlant = document.getElementById('btnNuevaPlantilla');
     const cboOperador = document.getElementById('operador');
     const cboPromocion = document.getElementById('promocion');
-    const cboCantMeses = document.getElementById('meses');
     const txtSnLlamada = document.getElementById('snLlamada');
     const txtNumeroCli = document.getElementById('numeroCliente');
     const ckbSegmento = document.getElementById('segmentoCheck');
@@ -26,6 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const cboCiclo = document.getElementById('cicloCbo');
     const txtUsuarioE = document.getElementById('usuarioE');
     const cboSubcampaña = document.getElementById('subcampaña');
+
+    //Validar 3 tipos de promociones
+    validar3TiposPromociones();
 
     //--------------------------------------------------------------------------------------
     //Habilitar o deshabilitar el campo de texto de IMR
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             txtAreaCods.focus();
         } else {
             txtAreaCods.disabled = true;
-            txtAreaCods.removeAttribute("required",false);
+            txtAreaCods.setAttribute("required",false);
             txtAreaCods.value = "";
         }
     });
@@ -129,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //---------------------------------------------------------------------------------------
     // Bloquear la escritura del campo "COMPORTAMIENTO DE PAGO"
-    txtCpPago.addEventListener('keydown', (e) => {
+    inputCpPago.addEventListener('keydown', (e) => {
         // Permitir: teclas de control, flechas y números
         const allowedKeys = [
             'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
@@ -148,12 +150,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Detectar cuando cambia el valor (por input o seteo manual)
-    txtCpPago.addEventListener('input', () => {
-        const valor = parseFloat(txtCpPago.value);
+    inputCpPago.addEventListener('input', () => {
+        const valor = parseFloat(inputCpPago.value);
 
         // Si el valor no está entre 1 y 10, limpiar el campo
         if (valor < 1 || valor > 10) {
-            txtCpPago.value = '';
+            inputCpPago.value = '';
         }
     });
 
@@ -174,10 +176,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (imr === "No afecto a IMR") {
             imr = `""${imr}""`;
         }
-        let promocion = cboPromocion.value;
-        let cantidadMeses =cboCantMeses.value;
+        let promocion = cboPromocion.options[cboPromocion.selectedIndex].text; //Cambiar a options
         let mesesAplicar = formatearMes(mesAplicar.value);
-        let cpPago = txtCpPago.value;
+        let cpPago = inputCpPago.value;
         let sn = txtSnLlamada.value;
         let vbSupervisor = txtSuper.value;
 
@@ -193,7 +194,26 @@ document.addEventListener('DOMContentLoaded', () => {
         let ciclo = cboCiclo.options[cboCiclo.selectedIndex].text;
 
         //Escribir plantilla
-        txtAreaResultadoParcial = `"TIPO DE SOLICITUD: Contención/Competencia\nIMR del cliente: ${imr}\nOperador: ${operador}\nPromoción ofrecida: ${promocion}\nCantidad de meses: ${cantidadMeses}\nMeses a aplicar: ${mesesAplicar}\nComportamiento de pago: ${cpPago}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}`;
+
+        //Establecer tipo de solicitud: Contención PORT OUT o Contención/Competencia
+        let tipoSolicitud = "";
+        if (cboPromocion.value = "doble_bono") {
+            tipoSolicitud = "Contención PORT OUT"
+        } else {
+            tipoSolicitud = "Contención/Competencia"
+        }
+
+        txtAreaResultadoParcial = `"TIPO DE SOLICITUD: ${tipoSolicitud}\nIMR del cliente: ${imr}\nOperador: ${operador}\nPromoción ofrecida: ${promocion}`;
+
+        //Validar si meses a aplicar es obligatorio:
+        if (mesAplicar.hasAttribute('required')) {
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nMeses a aplicar: ${mesesAplicar}`;
+        }
+
+        //Validar si comportamiento de pago es obligatorio:
+        if (inputCpPago.hasAttribute('required')) {
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nComportamiento de pago: ${cpPago}`;
+        }
 
         if (ckbFecComprPago.checked) {
             txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nCompromiso de pago: ${fecComprPago}`;
@@ -211,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
             txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nNuevo plan: ${plan}`;
         }
 
-        txtAreaResultadoParcial = `${txtAreaResultadoParcial}"`;
+        txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}"`;
 
         //Culminar escribiendo la información para que el BO la revise:
         txtAreaResultadoParcial = `${txtAreaResultadoParcial}\n\nCampaña: ${subcampaña}\nN° de teléfono: ${numeroCliente}\nUsuario: ${usuarioE}`;
@@ -239,9 +259,10 @@ document.addEventListener('DOMContentLoaded', () => {
     btnNuevaPlant.addEventListener('click', () => {
         cboOperador.selectedIndex = 0;
         cboPromocion.selectedIndex = 0;
-        cboCantMeses.selectedIndex = 0;
+        mesAplicar.disabled = true;
         mesAplicar.value = "";
-        txtCpPago.value = "";
+        inputCpPago.disabled = true;
+        inputCpPago.value = "";
         txtSnLlamada.value = "";
         ckbIMR.checked = false;
         txtIMR.disabled = true;
@@ -256,15 +277,15 @@ document.addEventListener('DOMContentLoaded', () => {
         cboRequiereAnul.disabled = true;
         txtAreaCods.disabled = true;
         txtAreaCods.value = "";
-        txtAreaCods.removeAttribute("required",false);
+        txtAreaCods.setAttribute("required",false);
         txtAreaResultado.textContent = "";
         txtNumeroCli.value = "";
-        ckbSegmento.checked=false;
-        ckbCiclo.checked=false;
-        cboSegmento.disabled=true;
-        cboSegmento.selectedIndex=0;
-        cboCiclo.disabled=true;
-        cboCiclo.selectedIndex=0;
+        ckbSegmento.checked = false;
+        ckbCiclo.checked = false;
+        cboSegmento.disabled = true;
+        cboSegmento.selectedIndex = 0;
+        cboCiclo.disabled = true;
+        cboCiclo.selectedIndex = 0;
     });
 
     //Activar los combos de ciclo y segmento
@@ -283,6 +304,57 @@ document.addEventListener('DOMContentLoaded', () => {
             cboCiclo.disabled = true;
         }
     })
+
+    //Función para Validar reglas de negocio para los 3 tipos de promociones dobles:
+    function validar3TiposPromociones() {
+        // Estado inicial
+        mesAplicar.disabled = true;
+        comportamientoPago.disabled = true;
+        nuevoPlanCbo.disabled = true;
+
+        // Detectar cambios
+        promocion.addEventListener("change", validarCampos);
+        nuevoPlanCheck.addEventListener("change", () => {
+            nuevoPlanCbo.disabled = !nuevoPlanCheck.checked;
+            validarCampos();
+        });
+
+        function validarCampos() {
+            const promo = promocion.value;
+            const nuevoPlanMarcado = nuevoPlanCheck.checked;
+
+            // Reset
+            mesAplicar.disabled = true;
+            mesAplicar.required = false;
+            comportamientoPago.disabled = true;
+            comportamientoPago.required = false;
+
+            // === Lógica según tipo de promoción ===
+            if (promo === "descuento_bono") {
+                // DESCUENTO + BONO DE GB
+                mesAplicar.disabled = false;
+                mesAplicar.required = true;
+                comportamientoPago.disabled = false;
+                comportamientoPago.required = true;
+
+            } else if (promo === "doble_bono") {
+                // DOBLE BONO DE GB
+                if (nuevoPlanMarcado) {
+                    mesAplicar.disabled = false;
+                    mesAplicar.required = true;
+                }
+                comportamientoPago.disabled = true;
+                comportamientoPago.required = false;
+
+            } else if (promo === "doble_descuento") {
+                // DOBLE DESCUENTO
+                mesAplicar.disabled = false;
+                mesAplicar.required = true;
+                comportamientoPago.disabled = false;
+                comportamientoPago.required = true;
+            }
+        }
+    }
 });
 
 function mostrarFechComprPago() {
