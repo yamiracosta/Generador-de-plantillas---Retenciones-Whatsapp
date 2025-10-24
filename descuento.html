@@ -14,7 +14,7 @@
 <body>
 
     <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div id="cabecera" style="display: flex; justify-content: space-between; align-items: center; text-align: center;">
             <a href="index.html" class="buttons" style="text-decoration: none; background-color: #dc3545;">⬅️
                 REGRESAR</a>
             <h2>GENERADOR DE PLANTILLAS: DESCUENTO</h2>
@@ -23,18 +23,18 @@
                 PLANTILLA</button>
         </div>
 
-        <div style="display: flex; margin-bottom: 20px; justify-content: space-between; align-items: center;">
-            <div class="field2">
+        <div id="cntndr-fila2" style="display: flex; margin-bottom: 20px; justify-content: space-between; align-items: center;">
+            <div id="cntndr-numcliente" class="field2">
                 <label for="numeroCliente">Número del cliente:</label>
                 <input required type="number" id="numeroCliente" form="formCliente">
             </div>
 
-            <div class="field2">
+            <div id="cntndr-usuarioE" class="field2">
                 <label for="usuarioE">Usuario E:</label>
                 <input required type="text" id="usuarioE" form="formCliente">
             </div>
 
-            <div class="field">
+            <div id="cntndr-subcampaña" class="field">
                 <label for="subcampaña">Subcampaña:</label>
                 <select required id="subcampaña" form="formCliente">
                     <option value="">---Seleccionar---</option>
@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <div style="display: flex; justify-content: space-between;">
+        <div id="cntndr-form-result" style="display: flex; justify-content: space-between;">
             <form id="formCliente" name="formCliente">
 
                 <div class="field">
@@ -160,7 +160,7 @@
 
             <div class="result-section">
                 <!--INCLUIR CAMPOS DE SEGMENTO Y CICLO DE FACTURACION (opcional)-->
-                <div class="field">
+                <div id="cntndr-segmentociclo" class="field">
                     <div class="field" style="margin-bottom: 0;">
                         <input type="checkbox" id="segmentoCheck">
                         <label for="segmentoCbo">Segmento:</label>
@@ -172,7 +172,7 @@
                         <option value="P">P</option>
                         <option value="S">S</option>
                     </select>
-                    <div class="field" style="margin-bottom: 0;">
+                    <div id="cntndr-ciclo" class="field" style="margin-bottom: 0;">
                         <div class="field" style="margin-bottom: 0;">
                             <input type="checkbox" id="cicloCheck">
                             <label for="cicloText">Ciclo fact.:</label>

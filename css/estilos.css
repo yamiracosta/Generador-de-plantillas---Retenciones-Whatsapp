@@ -2,14 +2,14 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
   color: #333;
 }
 
-.card{
+.card {
   background-color: #333;
-  width: 65%;
+  width: 1000px;
   padding: 20px;
   padding-top: 0px;
   border-radius: 12px;
@@ -17,7 +17,7 @@ body {
   color: white;
 }
 
-#formCliente{
+#formCliente {
   background-color: #333;
   width: 50%;
   border-radius: 10px;
@@ -33,7 +33,7 @@ body {
   justify-content: space-between
 }
 
-.field2{
+.field2 {
   display: flex;
   margin-bottom: 8px;
   align-items: center;
@@ -84,7 +84,7 @@ textarea {
   border-color: #495057;
 }
 
-input[type=checkbox]{
+input[type=checkbox] {
   margin-bottom: 0;
 }
 
@@ -98,14 +98,149 @@ label {
   background-color: #ffc107;
 }
 
-#mostrarBtn{
-    background-color: #198754;
+#mostrarBtn {
+  background-color: #198754;
 }
 
-#numeroCliente{
+#numeroCliente {
   width: 30%;
 }
 
-#usuarioE{
+#usuarioE {
   width: 30%;
+}
+
+
+/* Responsividad */
+@media (min-width: 710px) and (max-width: 984px) {
+  .card {
+    width: 700px;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  #cntndr-fila2 {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  #cntndr-usuarioE{
+    display: flex;
+    justify-content: end;
+  }
+
+  #cntndr-segmentociclo{
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  #cntndr-ciclo {
+    width: 100%;
+  }
+
+  #resultado{
+    height: 343px !important;
+  }
+
+  #textAreaCodigos{
+    flex-grow: 1;
+    resize: none;
+  }
+
+  #cntndr-cods{
+    flex-grow: 1;
+    resize: none;
+  }
+
+}
+
+@media (max-width: 671px) {
+  #cntndr-usuarioE{
+    display: flex;
+    justify-content: start !important;
+  }
+}
+
+@media (max-width: 710px) {
+  h2 {
+    text-align: center;
+  }
+
+  #cntndr-form-result {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #formCliente {
+    width: 100%;
+  }
+
+  .card {
+    max-width: 700px;
+    min-width: 300px;
+  }
+
+  .result-section {
+    width: 100%;
+  }
+
+  #cntndr-fila2 {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  #cntndr-usuarioE{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 0;
+  }
+
+  #cntndr-segmentociclo{
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  #cntndr-ciclo {
+    width: 100%;
+  }
+
+  #cntndr-numcliente {
+    margin-bottom: 0;
+  }
+
+  #cntndr-segmentociclo{
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  #cabecera {
+    flex-wrap: wrap;
+  }
+
+  #cabecera h2 {
+    order: 3;       /* mueve el título al final */
+    width: 100%;    /* ocupa toda la fila */
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  #cabecera a {
+    margin-top: 20px;
+    order: 1;
+  }
+
+  #cabecera button {
+    margin-top: 20px;
+    order: 2;
+  }
+}
+
+@media (max-width: 426px) {
+  #cntndr-subcampaña {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
