@@ -70,20 +70,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // === 3️⃣ Validación para #snLlamada ===
-    // Solo números
-    txtSnLlamada.addEventListener('input', () => {
-        txtSnLlamada.value = txtSnLlamada.value.replace(/\D/g, '');
+    // --- 1. KEYDOWN (Previene la escritura inválida) ---
+    txtSnLlamada.addEventListener('keydown', (e) => {
+        // Permite comandos (Ctrl+V, Ctrl+C, Ctrl+X, Cmd+A, etc.)
+        const isCtrlCommand = e.ctrlKey || e.metaKey;
+        // Permite teclas de navegación y edición (Flechas, Backspace, Tab, Shift, etc.)
+        const isNavKey = e.key.length > 1; // "Backspace", "Shift", "ArrowLeft"
+
+        if (isCtrlCommand || isNavKey) {
+            return; // No previene la acción
+        }
+
+        // --- Tus nuevas reglas de tecleo ---
+
+        // Regla 1: No permitir guion si el campo está vacío
+        if (e.key === '-' && e.target.value.length === 0) {
+            e.preventDefault();
+            return;
+        }
+
+        // Regla 2: No permitir guion si el último caracter ya es un guion
+        if (e.key === '-' && e.target.value.endsWith('-')) {
+            e.preventDefault();
+            return;
+        }
+
+        // --- Regla final: Permitir solo alfanuméricos y guion ---
+        const isAllowedChar = /[0-9a-zA-Z\-]/.test(e.key);
+
+        if (!isAllowedChar) {
+            e.preventDefault();
+        }
     });
 
-    // Bloquear letras o símbolos, pero permitir copiar, pegar y cortar (Ctrl+C / Ctrl+V / Ctrl+X)
-    txtSnLlamada.addEventListener('keydown', (e) => {
-        const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight'];
-        const isCtrlV = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v'; // pegar
-        const isCtrlC = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c'; // copiar
-        const isCtrlX = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'x'; // cortar
 
-        if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key) && !isCtrlV && !isCtrlC && !isCtrlX) {
-            e.preventDefault();
+    // --- 2. INPUT (Limpia al pegar o modificar) ---
+    txtSnLlamada.addEventListener('input', (e) => {
+        let value = e.target.value;
+
+        // 1. Elimina caracteres no permitidos (todo MENOS alfanum y guion)
+        let cleanValue = value.replace(/[^0-9a-zA-Z\-]/g, '');
+
+        // 2. Elimina guion al inicio (por si se pegó)
+        cleanValue = cleanValue.replace(/^-+/, '');
+
+        // 3. Reemplaza guiones múltiples con uno solo (por si se pegó "abc--def")
+        cleanValue = cleanValue.replace(/--+/g, '-');
+
+        // Se aplica el valor limpio
+        if (value !== cleanValue) {
+            e.target.value = cleanValue;
+        }
+    });
+
+
+    // --- 3. CHANGE (Limpia al salir del campo) ---
+    txtSnLlamada.addEventListener('change', (e) => {
+        // Esta es la única forma segura de eliminar el guion final
+        // sin arruinar la experiencia de escritura.
+        let value = e.target.value;
+
+        // 4. Elimina guion al final (ahora que el usuario terminó)
+        let cleanValue = value.replace(/-+$/, ''); // Busca uno o más guiones al final
+
+        if (value !== cleanValue) {
+            e.target.value = cleanValue;
         }
     });
 
