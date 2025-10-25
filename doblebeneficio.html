@@ -67,7 +67,6 @@
                         <option value="">------Seleccionar------</option>
                         <option value="descuento_bono">50% por 6 meses + 100GB AV por 6 meses</option>
                         <option value="descuento_bono">50% por 3 meses + 30 GB Tik Tok por 6 meses</option>
-                        <option value="doble_bono">30 GB Tiktok por 3 meses + 30 GB por 6 meses</option>
                         <option value="doble_descuento">CF S/ 19.95 por 3 meses >> CF S/ 39.90 por 9 meses</option>
                     </select>
                 </div>
@@ -95,12 +94,12 @@
 
                 <div class="field">
                     <label for="mesAplicar">Meses a aplicar:</label>
-                    <input disabled required type="month" id="mesAplicar">
+                    <input required type="month" id="mesAplicar">
                 </div>
 
                 <div class="field">
                     <label style="width: 66%;" for="comportamientoPago">Comportamiento de pago (1-10):</label>
-                    <input disabled style="width: 34%;" required type="number" id="comportamientoPago" min="1" max="10"
+                    <input style="width: 34%;" required type="number" id="comportamientoPago" min="1" max="10"
                         placeholder="Ingrese comportamiento de pago">
                 </div>
 
@@ -162,7 +161,7 @@
                     <div id="cntndr-ciclo" class="field" style="margin-bottom: 0;">
                         <div class="field" style="margin-bottom: 0;">
                             <input type="checkbox" id="cicloCheck">
-                            <label for="cicloText">Ciclo fact.:</label>
+                            <label for="cicloCbo">Ciclo fact.:</label>
                         </div>
                         <select disabled name="cicloCbo" id="cicloCbo">
                             <script>

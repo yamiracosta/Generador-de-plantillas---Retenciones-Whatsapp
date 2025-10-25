@@ -37,6 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
             txtAreaCods.setAttribute('required',false);
         }
     });
+
+    //Habilitar o deshabilitar la opción de Cantidad de meses si el bono ofrecido es doble bono de GB
+    cboPromocion.addEventListener('change', () => {
+        if (cboPromocion.value === "doble_bono") {
+            cboCantMeses.selectedIndex = 0;
+            cboCantMeses.disabled = true;
+            cboCantMeses.setAttribute('required', false);
+        } else {
+            cboCantMeses.disabled = false;
+            cboCantMeses.setAttribute('required', true);
+        }
+    })
   
     //Iniciar el cboMeses deshabilitado
     dtChsrMesAplicar.disabled=true;
@@ -135,6 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
         cboOperador.selectedIndex = 0;
         cboPromocion.value = "";
         cboCantMeses.selectedIndex=0;
+        cboCantMeses.setAttribute('required', true);
+        cboCantMeses.disabled = false;
         dtChsrMesAplicar.value="";
         dtChsrMesAplicar.setAttribute('required',true);
         txtSnLlamada.value="";

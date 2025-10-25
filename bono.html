@@ -59,13 +59,15 @@
                     </select>
                 </div>
 
-                <div class="field">
+                <div style="display: flex; flex-wrap: wrap; align-items: center; column-gap: 20px;" class="field">
                     <label for="promocion">Bono ofrecido:</label>
-                    <select name="promocion" id="promocion">
+                    <select style="flex-grow: 1; min-width: 300px" required name="promocion" id="promocion">
+                        <option value="">------Seleccionar------</option>
                         <option value="5 GB">5 GB</option>
                         <option value="10 GB">10 GB</option>
                         <option value="30 GB">30 GB</option>
                         <option value="30 GB para Tik Tok">30 GB para Tik Tok</option>
+                        <option value="doble_bono">30 GB Tiktok por 3 meses + 30 GB por 6 meses</option>
                         <option value="35 GB">35 GB</option>
                         <option value="40 GB">40 GB</option>
                         <option value="55 GB">55 GB</option>
@@ -161,7 +163,7 @@
                     <div id="cntndr-ciclo" class="field" style="margin-bottom: 0;">
                         <div class="field" style="margin-bottom: 0;">
                             <input type="checkbox" id="cicloCheck">
-                            <label for="cicloText">Ciclo fact.:</label>
+                            <label for="cicloCbo">Ciclo fact.:</label>
                         </div>
                         <select disabled name="cicloCbo" id="cicloCbo">
                             <script>

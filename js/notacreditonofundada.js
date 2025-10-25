@@ -87,12 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
         txtSnLlamada.value = "";
         txtSupervisor.value = "GIANFRANCO PAZ";
         txtAreaResultado.value = "";
-        ckbSegmento.checked=false;
-        ckbCiclo.checked=false;
-        cboSegmento.disabled=true;
-        cboSegmento.selectedIndex=0;
-        cboCiclo.disabled=true;
-        cboCiclo.selectedIndex=0;
+        ckbSegmento.checked = false;
+        ckbCiclo.checked = false;
+        cboSegmento.disabled = true;
+        cboSegmento.selectedIndex = 0;
+        cboCiclo.disabled = true;
+        cboCiclo.selectedIndex = 0;
     });
 
     //Activar los combos de ciclo y segmento
@@ -161,5 +161,30 @@ document.addEventListener('DOMContentLoaded', () => {
         txtAreaResultado.select();
         txtAreaResultado.setSelectionRange(0, 99999); // Para móviles
         navigator.clipboard.writeText(txtAreaResultado.value)
+    });
+
+    //Validación numérica para el campo "IMR"
+    // Solo números, incluido el punto ".""
+    txtIMR.addEventListener('input', (event) => {
+        let value = event.target.value;
+
+        // 1. Elimina todo excepto dígitos y puntos
+        value = value.replace(/[^\d\.]/g, '');
+
+        // 2. (NUEVO) Elimina el punto si es el primer caracter
+        //    ^\. significa "un punto al inicio del string"
+        value = value.replace(/^\./, '');
+
+        // 3. Elimina puntos "extra" (para que solo haya uno)
+        //    Esto busca un (punto + algo) y luego un segundo punto,
+        //    y reemplaza todo con solo el (punto + algo)
+        value = value.replace(/(\..*)\./g, '$1');
+
+        // 4. Limita a un máximo de 2 decimales
+        //    Busca (un punto + 2 dígitos) y borra cualquier dígito
+        //    que venga después.
+        value = value.replace(/(\.\d{2})\d+/g, '$1');
+
+        event.target.value = value;
     });
 })
