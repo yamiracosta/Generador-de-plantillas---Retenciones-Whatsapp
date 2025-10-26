@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const txtUsuarioE = document.getElementById('usuarioE');
     const txtSnLlamada = document.getElementById('snLlamada');
     const dtChsrMesAplicar = document.getElementById('mesAplicar');
+    const txtMontoSinIGV = document.getElementById('montoConIGV');
 
     // === 1️⃣ Validación para #numeroCliente ===
     // Solo números, debe empezar con 9 y máximo 9 caracteres
@@ -138,4 +139,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    //Validación para el campo "Monto con IGV":
+    if (txtMontoSinIGV) {
+        txtMontoSinIGV.addEventListener('input', (event) => {
+            let value = event.target.value;
+
+            // 1. (REGLA 2 y 3) Elimina "0" o "." como primer caracter
+            if (value.startsWith('0') || value.startsWith('.')) {
+                value = value.substring(1); // Borra el primer caracter
+            }
+
+            // 2. Limpia caracteres no válidos (solo permite dígitos y un punto)
+            value = value.replace(/[^\d\.]/g, '');
+
+            // 3. Elimina puntos "extra" (para que solo haya uno)
+            value = value.replace(/(\..*)\./g, '$1');
+
+            // 4. (REGLA 1) Limita a un máximo de 2 decimales
+            //    Busca (un punto + 2 dígitos) y borra cualquier dígito que venga después.
+            value = value.replace(/(\.\d{2})\d+/g, '$1');
+
+            // Asigna el valor limpio de vuelta al input
+            event.target.value = value;
+        });
+    }
 })
