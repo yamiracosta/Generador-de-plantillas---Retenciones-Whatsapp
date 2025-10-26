@@ -12,6 +12,10 @@ body {
   resize: none;
 }
 
+#cntndr-numcliente {
+  width: fit-content;
+}
+
 #cntndr-vbsuper {
     margin-bottom: 0;
   }
@@ -35,7 +39,7 @@ body {
 
 .field {
   display: flex;
-  gap: 5px;
+  gap: 10px;
   margin-bottom: 8px;
   align-items: center;
   border-radius: 8px;
@@ -111,11 +115,11 @@ label {
 }
 
 #numeroCliente {
-  width: 30%;
+  width: 70px;
 }
 
 #usuarioE {
-  width: 30%;
+  width: 70px;
 }
 
 
@@ -175,7 +179,6 @@ label {
 
 @media (max-width: 671px) {
   #cntndr-usuarioE{
-    display: flex;
     justify-content: start !important;
   }
 }
@@ -226,6 +229,7 @@ label {
 
   #cntndr-numcliente {
     margin-bottom: 0;
+    width: fit-content;
   }
 
   #cntndr-segmentociclo{
@@ -254,11 +258,23 @@ label {
     margin-top: 20px;
     order: 2;
   }
+
+  #cntndr-subcampaña {
+    width: 100%;
+  }
+
+  #subcampaña {
+    flex-grow: 1;
+  }
 }
 
 @media (max-width: 426px) {
   #cntndr-subcampaña {
     display: flex;
     flex-wrap: wrap;
+  }
+
+  #subcampaña {
+    flex-grow: 1;
   }
 }
