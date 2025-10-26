@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     txtCampaña.value = "RETENCIONES WHATSAPP";
     txtIMR.value = `"No afecta a IMR"`;
     txtMedidaCorrectiva.value = "Nota de Crédito";
-    txtTipoRegistro.value = "No fundado";
+    txtTipoRegistro.value = "No fundada";
     txtSupervisor.value = "GIANFRANCO PAZ";
 
     //Botón que calcula IGV:
@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //Limpiar los campos con el botón "NUEVA PLANTILLA"
     btnNuevaPlantilla.addEventListener('click', () => {
         txtNumCliente.value = "";
-        cboCallCenter.selectedIndex = 1;
         txtCampaña.value = "RETENCIONES WHATSAPP";
         txtIMR.value = `"No afecta a IMR"`;
         txtIMR.disabled = true;

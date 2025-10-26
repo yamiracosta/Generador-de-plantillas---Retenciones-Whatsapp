@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //Limpiar los campos con el botón "NUEVA PLANTILLA"
     btnNuevaPlantilla.addEventListener('click', () => {
         txtNumCliente.value = "";
-        cboCallCenter.selectedIndex = 1;
         txtCampaña.value = "RETENCIONES WHATSAPP";
         txtIMR.value = `"No afecta a IMR"`;
         txtNumRecibo.value = "";

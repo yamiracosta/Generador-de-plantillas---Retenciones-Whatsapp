@@ -7,6 +7,10 @@ body {
   color: #333;
 }
 
+#subcampaña {
+  width: 265px;
+}
+
 #resultado {
   flex-grow: 1;
   resize: none;
@@ -115,7 +119,7 @@ label {
 }
 
 #numeroCliente {
-  width: 70px;
+  width: 85px;
 }
 
 #usuarioE {
@@ -125,6 +129,10 @@ label {
 
 /* Responsividad */
 @media (min-width: 710px) and (max-width: 984px) {
+  .label {
+    width: 100px;
+  }
+
   .card {
     width: 700px;
   }
@@ -175,6 +183,10 @@ label {
     align-items: stretch;
   }
 
+  #subcampaña {
+    width: 265px;
+  }
+
 }
 
 @media (max-width: 671px) {
@@ -184,6 +196,10 @@ label {
 }
 
 @media (max-width: 710px) {
+  #subcampaña {
+    width: 265px;
+  }
+
   h2 {
     text-align: center;
   }
@@ -261,10 +277,16 @@ label {
 
   #cntndr-subcampaña {
     width: 100%;
+    justify-content: start;
   }
 
-  #subcampaña {
-    flex-grow: 1;
+  #lbl-numcliente,#lbl-usuarioe{
+    width: 148px;
+  }
+
+  .label {
+    width: 190px;
+    max-width: fit-content;
   }
 }
 
@@ -276,5 +298,13 @@ label {
 
   #subcampaña {
     flex-grow: 1;
+  }
+
+  .label {
+    width: 100px;
+  }
+
+  #lbl-numcliente,#lbl-usuarioe{
+    width: 148px;
   }
 }

@@ -25,19 +25,19 @@
 
         <div id="cntndr-fila2" style="display: flex; margin-bottom: 20px; justify-content: space-between; align-items: center;">
             <div id="cntndr-numcliente" class="field2">
-                <label for="numeroCliente">Número del cliente:</label>
+                <label id="lbl-numcliente" for="numeroCliente">Número del cliente:</label>
                 <input required type="number" id="numeroCliente" form="formCliente">
             </div>
 
             <div id="cntndr-usuarioE" class="field2">
-                <label for="usuarioE">Usuario E:</label>
+                <label id="lbl-usuarioe" for="usuarioE">Usuario E:</label>
                 <input required type="text" id="usuarioE" form="formCliente">
             </div>
 
             <div id="cntndr-subcampaña" class="field">
                 <label for="subcampaña">Subcampaña:</label>
                 <select required id="subcampaña" form="formCliente">
-                    <option value="">---Seleccionar---</option>
+                    <option value="">Seleccionar</option>
                     <option>CONSULTA PREVIA</option>
                     <option>CONTACTADOS</option>
                     <option>CONSULTA PREVIA/DEUDA CEDENTE</option>
@@ -50,9 +50,9 @@
             <form id="formCliente" name="formCliente">
 
                 <div class="field">
-                    <label for="operador">Operador:</label>
-                    <select required id="operador">
-                        <option value="">------Seleccionar------</option>
+                    <label class="label" for="operador">Operador:</label>
+                    <select required id="operador" style="width: 175px;">
+                        <option value="">Seleccionar</option>
                         <option>MOVISTAR</option>
                         <option>ENTEL</option>
                         <option>BITEL</option>
@@ -60,9 +60,9 @@
                 </div>
 
                 <div id="cntndr-bonoofrecido" style="display: flex; flex-wrap: wrap; align-items: center; column-gap: 20px;" class="field">
-                    <label for="promocion">Bono ofrecido:</label>
-                    <select style="flex-grow: 1; min-width: 300px" required name="promocion" id="promocion">
-                        <option value="">------Seleccionar------</option>
+                    <label class="label" for="promocion">Bono ofrecido:</label>
+                    <select style="width: 175px" required name="promocion" id="promocion">
+                        <option value="">Seleccionar</option>
                         <option value="5 GB">5 GB</option>
                         <option value="10 GB">10 GB</option>
                         <option value="30 GB">30 GB</option>
@@ -77,9 +77,9 @@
                 </div>
 
                 <div class="field">
-                    <label for="meses">Cantidad de meses:</label>
-                    <select required id="meses">
-                        <option value="">------Seleccionar------</option>
+                    <label class="label" for="meses">Cantidad de meses:</label>
+                    <select required id="meses" style="width: 175px;">
+                        <option value="">Seleccionar</option>
                         <option value="">1 MES</option>
                         <option value="">3 MESES</option>
                         <option value="">6 MESES</option>
@@ -90,22 +90,21 @@
                 </div>
 
                 <div class="field">
-                    <label for="snLlamada">SN de la llamada:</label>
-                    <input required type="text" id="snLlamada" placeholder="Ingrese SN de la llamada">
+                    <label class="label" for="snLlamada">SN de la llamada:</label>
+                    <input style="width: 157px;" required type="text" id="snLlamada" placeholder="Ingresar SN de llamada">
                 </div>
 
                 <div class="field">
-                    <label for="vbSupervisor">VB del supervisor:</label>
-                    <input required type="text" id="vbSupervisor" placeholder="---Ingresar VB del supervisor---">
+                    <label class="label" for="vbSupervisor">VB del supervisor:</label>
+                    <input style="width: 157px;" required type="text" id="vbSupervisor" placeholder="Ingresar VB de supervisor">
                 </div>
 
                 <div class="field">
                     <div class="field">
                         <input type="checkbox" id="nuevoPlanCheck">
                         <label for="nuevoPlanCheck">Nuevo plan: </label>
-
                     </div>
-                    <select disabled id="nuevoPlanCbo">
+                    <select style="width: 175px;" disabled id="nuevoPlanCbo">
                         <option>MAX 29.90</option>
                         <option>MAX 39.90</option>
                         <option>MAX 49.90</option>
@@ -122,8 +121,8 @@
                 </div>
 
                 <div class="field">
-                    <label for="mesAplicar">Meses a aplicar:</label>
-                    <input type="month" id="mesAplicar">
+                    <label class="label" for="mesAplicar">Meses a aplicar:</label>
+                    <input required type="month" id="mesAplicar" style="width: 157px;">
                 </div>
 
                 <div class="field" style="justify-content:left;">
@@ -153,7 +152,7 @@
                         <input type="checkbox" id="segmentoCheck">
                         <label for="segmentoCbo">Segmento:</label>
                     </div>
-                    <select disabled name="segmentoCbo" id="segmentoCbo">
+                    <select style="width: 53px;" disabled name="segmentoCbo" id="segmentoCbo">
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>
@@ -165,7 +164,7 @@
                             <input type="checkbox" id="cicloCheck">
                             <label for="cicloCbo">Ciclo fact.:</label>
                         </div>
-                        <select disabled name="cicloCbo" id="cicloCbo">
+                        <select style="width: 53px;" disabled name="cicloCbo" id="cicloCbo">
                             <script>
                                 const excluir = [2, 7, 13, 15, 17, 21, 23, 27];
                                 for (let i = 1; i <= 28; i++) {

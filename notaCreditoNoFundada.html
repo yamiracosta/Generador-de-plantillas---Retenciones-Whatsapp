@@ -23,20 +23,20 @@
 
         <div id="cntndr-fila2" style="display: flex; margin-bottom: 20px; justify-content: space-between; align-items: center;">
             <div id="cntndr-numcliente" class="field2">
-                <label for="numeroCliente">Número del cliente:</label>
+                <label id="lbl-numcliente" for="numeroCliente">Número del cliente:</label>
                 <input required type="number" id="numeroCliente"
                     form="formCliente">
             </div>
 
             <div id="cntndr-usuarioE" class="field2">
-                <label for="usuarioE">Usuario E:</label>
+                <label id="lbl-usuarioe" for="usuarioE">Usuario E:</label>
                 <input required type="text" id="usuarioE" form="formCliente">
             </div>
 
             <div id="cntndr-subcampaña" class="field">
                 <label for="subcampaña">Subcampaña:</label>
                 <select required id="subcampaña" form="formCliente">
-                    <option value="">---Seleccionar---</option>
+                    <option value="">Seleccionar</option>
                     <option>CONSULTA PREVIA</option>
                     <option>CONTACTADOS</option>
                     <option>CONSULTA PREVIA/DEUDA CEDENTE</option>
@@ -49,17 +49,17 @@
             <form id="formCliente" name="formCliente">
 
                 <div class="field">
-                    <label for="callCenter">Call Center:</label>
-                    <select required name="callCenter" id="callCenter">
-                        <option value="">------Seleccionar------</option>
-                        <option selected value="Partner Service">PARTNER SERVICE</option>
+                    <label class="label" for="callCenter">Call Center:</label>
+                    <select style="width: 183px;" required name="callCenter" id="callCenter">
+                        <option value="">Seleccionar</option>
+                        <option value="Partner Service">PARTNER SERVICE</option>
                         <option value="GEA">GEA</option>
                     </select>
                 </div>
 
                 <div class="field">
-                    <label for="campaña">Campaña:</label>
-                    <input required type="text" id="campaña">
+                    <label class="label" for="campaña">Campaña:</label>
+                    <input style="width: 165px;" required type="text" id="campaña" placeholder="Ingresar campaña">
                 </div>
 
                 <div class="field">
@@ -67,18 +67,18 @@
                         <input style="margin: 0;" type="checkbox" id="imrCheck">
                         <label for="imrCheck">IMR del cliente</label>
                     </div>
-                    <input required disabled type="text" id="imrText" placeholder="Ingrese IMR del cliente">
+                    <input style="width: 165px;" required disabled type="text" id="imrText" placeholder="Ingresar IMR del cliente">
                 </div>
 
                 <div class="field">
-                    <label for="nroRecibo">N° de recibo:</label>
-                    <input required type="text" id="nroRecibo">
+                    <label class="label" for="nroRecibo">N° de recibo:</label>
+                    <input style="width: 165px;" required type="text" id="nroRecibo" placeholder="Ingresar N° de recibo">
                 </div>
 
                 <div class="field">
-                    <label for="motivo">Motivo:</label>
-                    <select required type="motivo" id="motivo">
-                        <option value="">---Seleccionar---</option>
+                    <label class="label" for="motivo">Motivo:</label>
+                    <select style="width: 183px;" required type="motivo" id="motivo">
+                        <option value="">Seleccionar</option>
                         <option>SERVICIOS VAS</option>
                         <option>RECONEXION</option>
                         <option>COMPRA DE PAQUETES</option>
@@ -86,43 +86,43 @@
                 </div>
 
                 <div class="field">
-                    <div style="width: 59%; margin-bottom: 0;" class="field">
-                        <label style="width: 70%;" for="montoConIGV">Monto (con IGV):</label>
+                    <label class="label" for="montoConIGV">Monto (con IGV):</label>
+                    <div style="width: 182px; margin-bottom: 0;" class="field">
+                        <input style="width: 45px;" type="text" inputmode="decimal" id="montoConIGV">
+                        <button id="btnCalcularMontoSinIGV" type="button" class="buttons"
+                            style="width: 30px; height: 30px; display: flex; align-items: center; text-align: center; justify-content: center; background-color: #6c757d;">🧮</button>
+                        <input required disabled style="width: 45px;" type="number" name="montoSinIGV" id="montoSinIGV">
                     </div>
-                    <input style="width: 50px;" type="text" inputmode="decimal" id="montoConIGV">
-                    <button id="btnCalcularMontoSinIGV" type="button" class="buttons"
-                        style="width: 5%; height: 30px; display: flex; align-items: center; text-align: center; justify-content: center; background-color: #6c757d;">🧮</button>
-                    <input required disabled style="width: 50px;" type="number" name="montoSinIGV" id="montoSinIGV">
                 </div>
 
                 <div style="display: flex; flex-direction: column; padding-bottom: 15px;">
                     <label for="detalle">Detalle de la disconformidad:</label>
-                    <textarea required style="height: 40px;" name="detalle" id="detalle"></textarea>
+                    <textarea required style="height: 70px;" name="detalle" id="detalle" placeholder="Detallar disconformidad del usuario (Ejemplo: Usuario no reconoce compra de paquetes de GB, e insiste en portarse con otro operador si no se le hace un ajuste en su último recibo)"></textarea>
                 </div>
 
                 <div style="display: flex; flex-direction: column; padding-bottom: 15px;">
                     <label for="descarteRealizado">Descarte realizado:</label>
-                    <textarea required style="height: 20px;" name="descarteRealizado" id="descarteRealizado"></textarea>
+                    <textarea required style="height: 20px;" name="descarteRealizado" id="descarteRealizado" placeholder="Detallar descarte"></textarea>
+                </div>
+
+                 <div class="field">
+                    <label class="label" for="medidaCorrectiva">Medida Correctiva:</label>
+                    <input style="width: 165px;" required disabled type="medidaCorrectiva" id="medidaCorrectiva">
                 </div>
 
                 <div class="field">
-                    <label for="medidaCorrectiva">Medida Correctiva:</label>
-                    <input required disabled type="medidaCorrectiva" id="medidaCorrectiva">
+                    <label class="label" for="tipoRegistro">Tipo de registro:</label>
+                    <input style="width: 165px;" required disabled type="tipoRegistro" id="tipoRegistro">
                 </div>
 
                 <div class="field">
-                    <label for="tipoRegistro">Tipo de registro:</label>
-                    <input required disabled type="tipoRegistro" id="tipoRegistro">
-                </div>
-
-                <div class="field">
-                    <label for="snLlamada">SN de la llamada:</label>
-                    <input required type="text" id="snLlamada" placeholder="Ingrese SN de la llamada">
+                    <label class="label" for="snLlamada">SN de la llamada:</label>
+                    <input style="width: 165px;" required type="text" id="snLlamada" placeholder="Ingresar SN de llamada">
                 </div>
 
                 <div id="cntndr-vbsuper" class="field">
-                    <label for="vbSupervisor">VB del supervisor:</label>
-                    <input required type="text" id="vbSupervisor" placeholder="Ingresar VB del supervisor">
+                    <label class="label" for="vbSupervisor">VB del supervisor:</label>
+                    <input style="width: 165px;" required type="text" id="vbSupervisor" placeholder="Ingresar VB de supervisor">
                 </div>
 
             </form>
@@ -134,7 +134,7 @@
                         <input type="checkbox" id="segmentoCheck">
                         <label for="segmentoCbo">Segmento:</label>
                     </div>
-                    <select disabled name="segmentoCbo" id="segmentoCbo">
+                    <select style="width: 53px;" disabled name="segmentoCbo" id="segmentoCbo">
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>
@@ -146,7 +146,7 @@
                             <input type="checkbox" id="cicloCheck">
                             <label for="cicloCbo">Ciclo fact.:</label>
                         </div>
-                        <select disabled name="cicloCbo" id="cicloCbo">
+                        <select style="width: 53px;" disabled name="cicloCbo" id="cicloCbo">
                             <script>
                                 const excluir = [2, 7, 13, 15, 17, 21, 23, 27];
                                 for (let i = 1; i <= 28; i++) {
