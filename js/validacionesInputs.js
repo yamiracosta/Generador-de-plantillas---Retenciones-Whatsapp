@@ -2,9 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Obtener los campos
     const txtNumeroCliente = document.getElementById('numeroCliente');
     const txtUsuarioE = document.getElementById('usuarioE');
+    //------------------------------------------------------------------
     //Para NC solamente:
-    const txtNumeroCliente2 = document.getElementById('numeroCliente');
-    const txtUsuarioE2 = document.getElementById('usuarioE');
+    const txtNumeroCliente2 = document.getElementById('numeroCliente2');
+    const txtUsuarioE2 = document.getElementById('usuarioE2');
+    //------------------------------------------------------------------
     const txtSnLlamada = document.getElementById('snLlamada');
     const dtChsrMesAplicar = document.getElementById('mesAplicar');
     const txtMontoSinIGV = document.getElementById('montoConIGV');
@@ -55,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+
     //-------------------------------------------------------------------------------------------------------
 
     //Validación para el dateChooser mesesAplicar
@@ -79,25 +83,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Primer carácter debe ser "E" y los demás números (máximo 8 caracteres)
     if (txtUsuarioE) {
         txtUsuarioE.addEventListener('input', () => {
-            let value = txtUsuarioE.value.toUpperCase(); // convierte automáticamente a mayúscula
-            // Forzar que el primer carácter sea "E"
-            if (!value.startsWith('E')) value = 'E' + value.replace(/[^0-9]/g, '');
-            else {
-                // Solo permitir números después de la E
-                const onlyNumbers = value.slice(1).replace(/\D/g, '');
-                value = 'E' + onlyNumbers;
-            }
-            if (value.length > 8) value = value.slice(0, 8); // máximo 8 caracteres
-            txtUsuarioE.value = value;
-        });
+            let value = txtUsuarioE.value.toUpperCase(); // 1. Siempre mayúsculas
 
-        // Bloquear caracteres no válidos (solo permitir E al inicio y números después)
-        txtUsuarioE.addEventListener('keydown', (e) => {
-            const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowDown'];
-            if (txtUsuarioE.selectionStart === 0 && e.key.toUpperCase() === 'E') return; // permitir la E al inicio
-            if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key)) {
-                e.preventDefault();
+            // 2. Si el campo está vacío, permitirlo y no hacer nada.
+            // Esto es lo que te permite borrar la 'E' y dejar el campo vacío.
+            if (value === '') {
+                return;
             }
+
+            // 3. Si no empieza con 'E', borrar el contenido.
+            // (Esto evita que el usuario escriba "123" o pegue "HOLA")
+            if (!value.startsWith('E')) {
+                txtUsuarioE.value = '';
+                return;
+            }
+
+            // 4. Si llegamos aquí, SÍ empieza con 'E'.
+            // Limpiamos todo lo que sigue para que sean solo números.
+            const numbers = value.slice(1).replace(/\D/g, ''); // \D = no-dígito
+            let formattedValue = 'E' + numbers;
+
+            // 5. Aplicar el límite de 8 caracteres
+            if (formattedValue.length > 8) {
+                formattedValue = formattedValue.slice(0, 8);
+            }
+
+            txtUsuarioE.value = formattedValue;
         });
     }
 
@@ -106,25 +117,32 @@ document.addEventListener('DOMContentLoaded', () => {
     //Para NC:
     if (txtUsuarioE2) {
         txtUsuarioE2.addEventListener('input', () => {
-            let value = txtUsuarioE2.value.toUpperCase(); // convierte automáticamente a mayúscula
-            // Forzar que el primer carácter sea "E"
-            if (!value.startsWith('E')) value = 'E' + value.replace(/[^0-9]/g, '');
-            else {
-                // Solo permitir números después de la E
-                const onlyNumbers = value.slice(1).replace(/\D/g, '');
-                value = 'E' + onlyNumbers;
-            }
-            if (value.length > 8) value = value.slice(0, 8); // máximo 8 caracteres
-            txtUsuarioE2.value = value;
-        });
+            let value = txtUsuarioE2.value.toUpperCase(); // 1. Siempre mayúsculas
 
-        // Bloquear caracteres no válidos (solo permitir E al inicio y números después)
-        txtUsuarioE2.addEventListener('keydown', (e) => {
-            const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowDown'];
-            if (txtUsuarioE2.selectionStart === 0 && e.key.toUpperCase() === 'E') return; // permitir la E al inicio
-            if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key)) {
-                e.preventDefault();
+            // 2. Si el campo está vacío, permitirlo y no hacer nada.
+            // Esto es lo que te permite borrar la 'E' y dejar el campo vacío.
+            if (value === '') {
+                return;
             }
+
+            // 3. Si no empieza con 'E', borrar el contenido.
+            // (Esto evita que el usuario escriba "123" o pegue "HOLA")
+            if (!value.startsWith('E')) {
+                txtUsuarioE2.value = '';
+                return;
+            }
+
+            // 4. Si llegamos aquí, SÍ empieza con 'E'.
+            // Limpiamos todo lo que sigue para que sean solo números.
+            const numbers = value.slice(1).replace(/\D/g, ''); // \D = no-dígito
+            let formattedValue = 'E' + numbers;
+
+            // 5. Aplicar el límite de 8 caracteres
+            if (formattedValue.length > 8) {
+                formattedValue = formattedValue.slice(0, 8);
+            }
+
+            txtUsuarioE2.value = formattedValue;
         });
     }
 
