@@ -24,13 +24,12 @@
         <div id="cntndr-fila2" style="display: flex; margin-bottom: 20px; justify-content: space-between; align-items: center;">
             <div id="cntndr-numcliente" class="field2">
                 <label id="lbl-numcliente" for="numeroCliente2">Número del cliente:</label>
-                <input required type="number" id="numeroCliente2"
-                    form="formCliente">
+                <input required type="text" inputmode="decimal" id="numeroCliente2" form="formCliente" pattern="\d{9}$" maxlength="9" title="El número debe empezar con 9 y tener 9 caracteres">
             </div>
 
             <div id="cntndr-usuarioE" class="field2">
                 <label id="lbl-usuarioe" for="usuarioE2">Usuario E:</label>
-                <input required type="text" id="usuarioE2" form="formCliente">
+                <input required type="text" id="usuarioE2" form="formCliente" pattern="^E\d{7}$" maxlength="8" title="El nombre de usuario debe empezar con E y tener 8 caracteres">
             </div>
 
             <div id="cntndr-subcampaña" class="field">
@@ -130,6 +129,7 @@
             </form>
 
             <div class="linea-vertical"></div>
+            <div class="linea-horizontal"></div>
 
             <div class="result-section">
                 <!--INCLUIR CAMPOS DE SEGMENTO Y CICLO DE FACTURACION (opcional)-->
