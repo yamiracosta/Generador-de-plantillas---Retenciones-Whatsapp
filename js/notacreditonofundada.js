@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const txtMontoConIGV = document.getElementById('montoConIGV');
     const txtMontoSinIGV = document.getElementById('montoSinIGV');
     const btnNuevaPlantilla = document.getElementById('btnNuevaPlantilla');
-    const txtNumCliente = document.getElementById('numeroCliente');
+    const txtNumCliente = document.getElementById('numeroCliente2');
     const cboCallCenter = document.getElementById('callCenter');
     const txtNumRecibo = document.getElementById('nroRecibo');
     const txtAreaDescRealiz = document.getElementById('descarteRealizado');
@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const txtSnLlamada = document.getElementById('snLlamada');
     const txtAreaResultado = document.getElementById('resultado');
     const form = document.getElementById('formCliente');
-    const txtUsuarioE = document.getElementById('usuarioE');
-    const cboSubcampaña = document.getElementById('subcampaña');
+    const txtUsuarioE = document.getElementById('usuarioE2');
+    const cboSubcampaña = document.getElementById('subcampaña2');
     const txtAreaDetalle = document.getElementById('detalle');
     const btnCopiar = document.getElementById('btnCopiar');
     const ckbSegmento = document.getElementById('segmentoCheck');
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let ciclo = cboCiclo.options[cboCiclo.selectedIndex].text;
 
         //Escribir plantilla
-        txtAreaResultadoParcial = `N° de teléfono: ${numCliente}\nNombre del Call Center: ${callCenter}\nCampaña: ${campaña}\nIMR: ${imr}\nN° de recibo: ${nroRecibo}\nMotivo: ${motivo}\nImporte sin IGV: S/. ${montoSinIGV}\nDetalle de la disconformidad: ${detalleDisc}\nDescarte realizado: ${descarte}\nMedida correctiva: ${medidaCorrectiva}\nTipo de registro: ${tipoRegistro}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}\n\nCampaña: ${subCampaña}\nN° de teléfono: ${numCliente}\nUsuario: ${usuarioE}`;
+        txtAreaResultadoParcial = `NOTA DE CREDITO NO FUNDADA\n\n• N° de teléfono: ${numCliente}\n• Nombre del Call Center: ${callCenter}\n• Campaña solicitante: ${campaña}\n• IMR: ${imr}\n• N° de recibo: ${nroRecibo}\n• Motivo: ${motivo}\n• Importe sin IGV: S/. ${montoSinIGV}\n• Detalle de la disconformidad: ${detalleDisc}\n• Descarte realizado: ${descarte}\n• Medida correctiva: ${medidaCorrectiva}\n• Tipo de registro: ${tipoRegistro}\n• SN de la llamada: ${sn}\n• VB del supervisor: ${vbSupervisor}\n\nSubcampaña: ${subCampaña}\nN° de teléfono: ${numCliente}\nUsuario: ${usuarioE}`;
 
         if (ckbSegmento.checked) {
             txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nSegmento: ${segmento}`;

@@ -48,27 +48,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ckbDsctoVig.checked) {
             cboRequiereAnul.disabled = false;
             if (cboRequiereAnul.value == "1") {
-                txtAreaCods.setAttribute("required",true);
+                txtAreaCods.setAttribute("required", true);
                 txtAreaCods.disabled = false;
             } else {
                 txtAreaCods.disabled = true;
-                txtAreaCods.setAttribute("required",false);
+                txtAreaCods.setAttribute("required", false);
             }
         } else {
             cboRequiereAnul.disabled = true;
             txtAreaCods.disabled = true;
-            txtAreaCods.setAttribute("required",false);
+            txtAreaCods.setAttribute("required", false);
         }
     });
 
     cboRequiereAnul.addEventListener('change', () => {
         if (cboRequiereAnul.value == "1") {
             txtAreaCods.disabled = false;
-            txtAreaCods.setAttribute("required",true);
+            txtAreaCods.setAttribute("required", true);
             txtAreaCods.focus();
         } else {
             txtAreaCods.disabled = true;
-            txtAreaCods.removeAttribute("required",false);
+            txtAreaCods.removeAttribute("required", false);
             txtAreaCods.value = "";
         }
     });
@@ -108,6 +108,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (parts.length > 2) {
             value = parts[0] + '.' + parts[1]; // elimina puntos adicionales
         }
+
+        // --- INICIO DE LA NUEVA LÓGICA ---
+        // (Añadido para limitar a 2 decimales)
+        // Volvemos a dividir por si acaso el paso anterior arregló un '1.2.3' a '1.2'
+        const partsConDecimal = value.split('.');
+        if (partsConDecimal.length === 2 && partsConDecimal[1].length > 2) {
+            // Si hay una parte decimal (parts[1]) y tiene más de 2 dígitos,
+            // la cortamos a 2 dígitos.
+            value = partsConDecimal[0] + '.' + partsConDecimal[1].slice(0, 2);
+        }
+        // --- FIN DE LA NUEVA LÓGICA ---
 
         // Si el valor empieza con 0 y no tiene punto decimal, lo elimina (para evitar "00" o "01")
         if (/^0[0-9]+$/.test(value)) {
@@ -175,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
             imr = `""${imr}""`;
         }
         let promocion = cboPromocion.value;
-        let cantidadMeses =cboCantMeses.value;
+        let cantidadMeses = cboCantMeses.value;
         let mesesAplicar = formatearMes(dtChsrmesAplicar.value);
         let cpPago = txtCpPago.value;
         let sn = txtSnLlamada.value;
@@ -256,15 +267,15 @@ document.addEventListener('DOMContentLoaded', () => {
         cboRequiereAnul.disabled = true;
         txtAreaCods.disabled = true;
         txtAreaCods.value = "";
-        txtAreaCods.removeAttribute("required",false);
+        txtAreaCods.removeAttribute("required", false);
         txtAreaResultado.textContent = "";
         txtNumeroCli.value = "";
-        ckbSegmento.checked=false;
-        ckbCiclo.checked=false;
-        cboSegmento.disabled=true;
-        cboSegmento.selectedIndex=0;
-        cboCiclo.disabled=true;
-        cboCiclo.selectedIndex=0;
+        ckbSegmento.checked = false;
+        ckbCiclo.checked = false;
+        cboSegmento.disabled = true;
+        cboSegmento.selectedIndex = 0;
+        cboCiclo.disabled = true;
+        cboCiclo.selectedIndex = 0;
     });
 
     //Activar los combos de ciclo y segmento

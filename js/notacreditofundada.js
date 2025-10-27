@@ -10,15 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const cboAreaImputar = document.getElementById('areaImputar');
     const txtUsuarioResponsable = document.getElementById('usuarioResponsable');
     const btnNuevaPlantilla = document.getElementById('btnNuevaPlantilla');
-    const txtNumCliente = document.getElementById('numeroCliente');
+    const txtNumCliente = document.getElementById('numeroCliente2');
     const cboCallCenter = document.getElementById('callCenter');
     const txtNumRecibo = document.getElementById('nroRecibo');
     const txtAreaDescRealiz = document.getElementById('descarteRealizado');
     const txtSnLlamada = document.getElementById('snLlamada');
     const txtAreaResultado = document.getElementById('resultado');
     const form = document.getElementById('formCliente');
-    const txtUsuarioE = document.getElementById('usuarioE');
-    const cboSubcampaña = document.getElementById('subcampaña');
+    const txtUsuarioE = document.getElementById('usuarioE2');
+    const cboSubcampaña = document.getElementById('subcampaña2');
     const txtAreaMotivo = document.getElementById('motivo');
     const btnCopiar = document.getElementById('btnCopiar');
     const ckbSegmento = document.getElementById('segmentoCheck');
@@ -143,15 +143,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let ciclo = cboCiclo.options[cboCiclo.selectedIndex].text;
 
         //Escribir plantilla
-        txtAreaResultadoParcial = `N° de teléfono: ${numCliente}\nNombre del Call Center: ${callCenter}\nCampaña: ${campaña}\nIMR: ${imr}\nN° de recibo: ${nroRecibo}\nImporte sin IGV: S/. ${montoSinIGV}\nMotivo: ${motivo}\nDescarte realizado: ${descarte}\nMedida correctiva: ${medidaCorrectiva}\nTipo de registro: ${tipoRegistro}\nÁrea a imputar: ${area}`;
+        txtAreaResultadoParcial = `NOTA DE CREDITO FUNDADA\n\n• N° de teléfono: ${numCliente}\n• Nombre del Call Center: ${callCenter}\n• Campaña solicitante: ${campaña}\nIMR: ${imr}\n• N° de recibo: ${nroRecibo}\n• Importe sin IGV: S/. ${montoSinIGV}\n• Motivo: ${motivo}\n• Descarte realizado: ${descarte}\n• Medida correctiva: ${medidaCorrectiva}\n• Tipo de registro: ${tipoRegistro}\n• Área a imputar: ${area}`;
 
         //Opcional: el usuario responsable del error
         if (cboAreaImputar.options[cboAreaImputar.selectedIndex].text !== "TI") {
-            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nUsuario responsable del error: ${usuarioResponsable}`;
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\n• Usuario responsable del error: ${usuarioResponsable}`;
         }
 
         //Rellenar los demás campos como prosigue
-        txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}\n\nCampaña: ${subCampaña}\nN° de teléfono: ${numCliente}\nUsuario: ${usuarioE}`;
+        txtAreaResultadoParcial = `${txtAreaResultadoParcial}\n• SN de la llamada: ${sn}\n• VB del supervisor: ${vbSupervisor}\n\nC¿Subcampaña: ${subCampaña}\nN° de teléfono: ${numCliente}\nUsuario: ${usuarioE}`;
 
         if (ckbSegmento.checked) {
             txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nSegmento: ${segmento}`;

@@ -68,7 +68,7 @@
                         <input style="margin: 0;" type="checkbox" id="imrCheck">
                         <label for="imrCheck">IMR del cliente</label>
                     </div>
-                    <input style="width: 165px;" required disabled type="text" id="imrText" placeholder="Ingresar IMR del cliente">
+                    <input style="width: 165px;" required disabled type="text" id="imrText" placeholder="Ingresar IMR del cliente" pattern="^\d+\.\d{2}$" title="El valor del IMR debe incluir 2 números decimales">
                 </div>
 
                 <div class="field">
@@ -89,10 +89,10 @@
                 <div class="field">
                     <label class="label" for="montoConIGV">Monto (con IGV):</label>
                     <div style="width: 182px; margin-bottom: 0;" class="field">
-                        <input style="width: 45px;" type="text" inputmode="decimal" id="montoConIGV">
+                        <input style="width: 45px;" type="text" inputmode="decimal" id="montoConIGV" placeholder="Ingresar">
                         <button id="btnCalcularMontoSinIGV" type="button" class="buttons"
                             style="width: 30px; height: 30px; display: flex; align-items: center; text-align: center; justify-content: center; background-color: #6c757d;">🧮</button>
-                        <input required disabled style="width: 45px;" type="number" name="montoSinIGV" id="montoSinIGV">
+                        <input required readonly style="width: 45px;" type="number" name="montoSinIGV" id="montoSinIGV" placeholder="------">
                     </div>
                 </div>
 
