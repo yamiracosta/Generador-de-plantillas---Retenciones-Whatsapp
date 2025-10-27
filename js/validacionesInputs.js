@@ -2,30 +2,60 @@ document.addEventListener('DOMContentLoaded', () => {
     // Obtener los campos
     const txtNumeroCliente = document.getElementById('numeroCliente');
     const txtUsuarioE = document.getElementById('usuarioE');
+    //Para NC solamente:
+    const txtNumeroCliente2 = document.getElementById('numeroCliente');
+    const txtUsuarioE2 = document.getElementById('usuarioE');
     const txtSnLlamada = document.getElementById('snLlamada');
     const dtChsrMesAplicar = document.getElementById('mesAplicar');
     const txtMontoSinIGV = document.getElementById('montoConIGV');
 
     // === 1️⃣ Validación para #numeroCliente ===
     // Solo números, debe empezar con 9 y máximo 9 caracteres
-    txtNumeroCliente.addEventListener('input', () => {
-        let value = txtNumeroCliente.value.replace(/\D/g, ''); // elimina todo lo que no sea número
-        if (value.length > 9) value = value.slice(0, 9);    // máximo 9 caracteres
-        if (value && !value.startsWith('9')) value = '';    // si no empieza con 9, limpiar
-        txtNumeroCliente.value = value;
-    });
+    if (txtNumeroCliente) {
+        txtNumeroCliente.addEventListener('input', () => {
+            let value = txtNumeroCliente.value.replace(/\D/g, ''); // elimina todo lo que no sea número
+            if (value.length > 9) value = value.slice(0, 9);    // máximo 9 caracteres
+            if (value && !value.startsWith('9')) value = '';    // si no empieza con 9, limpiar
+            txtNumeroCliente.value = value;
+        });
 
-    // Bloquear letras o símbolos, pero permitir pegar (Ctrl+V / Cmd+V)
-    txtNumeroCliente.addEventListener('keydown', (e) => {
-        const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowDown'];
-        const isCtrlV = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v'; // Ctrl+V o Cmd+V
-        const isCtrlC = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c'; // Ctrl+C
-        const isCtrlX = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'x'; // Ctrl+X
+        // Bloquear letras o símbolos, pero permitir pegar (Ctrl+V / Cmd+V)
+        txtNumeroCliente.addEventListener('keydown', (e) => {
+            const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowDown'];
+            const isCtrlV = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v'; // Ctrl+V o Cmd+V
+            const isCtrlC = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c'; // Ctrl+C
+            const isCtrlX = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'x'; // Ctrl+X
 
-        if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key) && !isCtrlV && !isCtrlC && !isCtrlX) {
-            e.preventDefault();
-        }
-    });
+            if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key) && !isCtrlV && !isCtrlC && !isCtrlX) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    //-----------------------------------------------------------------------------------------------------
+
+    // Para NC:
+    if (txtNumeroCliente2) {
+        txtNumeroCliente2.addEventListener('input', () => {
+            let value = txtNumeroCliente2.value.replace(/\D/g, ''); // elimina todo lo que no sea número
+            if (value.length > 9) value = value.slice(0, 9);    // máximo 9 caracteres
+            if (value && !value.startsWith('9')) value = '';    // si no empieza con 9, limpiar
+            txtNumeroCliente2.value = value;
+        });
+
+        txtNumeroCliente2.addEventListener('keydown', (e) => {
+            const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowDown'];
+            const isCtrlV = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v'; // Ctrl+V o Cmd+V
+            const isCtrlC = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c'; // Ctrl+C
+            const isCtrlX = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'x'; // Ctrl+X
+
+            if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key) && !isCtrlV && !isCtrlC && !isCtrlX) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    //-------------------------------------------------------------------------------------------------------
 
     //Validación para el dateChooser mesesAplicar
     if (dtChsrMesAplicar) {
@@ -47,27 +77,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === 2️⃣ Validación para #usuarioE ===
     // Primer carácter debe ser "E" y los demás números (máximo 8 caracteres)
-    txtUsuarioE.addEventListener('input', () => {
-        let value = txtUsuarioE.value.toUpperCase(); // convierte automáticamente a mayúscula
-        // Forzar que el primer carácter sea "E"
-        if (!value.startsWith('E')) value = 'E' + value.replace(/[^0-9]/g, '');
-        else {
-            // Solo permitir números después de la E
-            const onlyNumbers = value.slice(1).replace(/\D/g, '');
-            value = 'E' + onlyNumbers;
-        }
-        if (value.length > 8) value = value.slice(0, 8); // máximo 8 caracteres
-        txtUsuarioE.value = value;
-    });
+    if (txtUsuarioE) {
+        txtUsuarioE.addEventListener('input', () => {
+            let value = txtUsuarioE.value.toUpperCase(); // convierte automáticamente a mayúscula
+            // Forzar que el primer carácter sea "E"
+            if (!value.startsWith('E')) value = 'E' + value.replace(/[^0-9]/g, '');
+            else {
+                // Solo permitir números después de la E
+                const onlyNumbers = value.slice(1).replace(/\D/g, '');
+                value = 'E' + onlyNumbers;
+            }
+            if (value.length > 8) value = value.slice(0, 8); // máximo 8 caracteres
+            txtUsuarioE.value = value;
+        });
 
-    // Bloquear caracteres no válidos (solo permitir E al inicio y números después)
-    txtUsuarioE.addEventListener('keydown', (e) => {
-        const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowDown'];
-        if (txtUsuarioE.selectionStart === 0 && e.key.toUpperCase() === 'E') return; // permitir la E al inicio
-        if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key)) {
-            e.preventDefault();
-        }
-    });
+        // Bloquear caracteres no válidos (solo permitir E al inicio y números después)
+        txtUsuarioE.addEventListener('keydown', (e) => {
+            const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowDown'];
+            if (txtUsuarioE.selectionStart === 0 && e.key.toUpperCase() === 'E') return; // permitir la E al inicio
+            if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key)) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    //------------------------------------------------------------------------------------------------------------
+
+    //Para NC:
+    if (txtUsuarioE2) {
+        txtUsuarioE2.addEventListener('input', () => {
+            let value = txtUsuarioE2.value.toUpperCase(); // convierte automáticamente a mayúscula
+            // Forzar que el primer carácter sea "E"
+            if (!value.startsWith('E')) value = 'E' + value.replace(/[^0-9]/g, '');
+            else {
+                // Solo permitir números después de la E
+                const onlyNumbers = value.slice(1).replace(/\D/g, '');
+                value = 'E' + onlyNumbers;
+            }
+            if (value.length > 8) value = value.slice(0, 8); // máximo 8 caracteres
+            txtUsuarioE2.value = value;
+        });
+
+        // Bloquear caracteres no válidos (solo permitir E al inicio y números después)
+        txtUsuarioE2.addEventListener('keydown', (e) => {
+            const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowDown'];
+            if (txtUsuarioE2.selectionStart === 0 && e.key.toUpperCase() === 'E') return; // permitir la E al inicio
+            if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key)) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    //------------------------------------------------------------------------------------------------------------
 
 
     // === 3️⃣ Validación para #snLlamada ===

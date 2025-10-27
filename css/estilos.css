@@ -11,6 +11,10 @@ body {
   width: 265px;
 }
 
+#subcampaña2 {
+  width: 265px;
+}
+
 #resultado {
   flex-grow: 1;
   resize: none;
@@ -21,8 +25,8 @@ body {
 }
 
 #cntndr-vbsuper {
-    margin-bottom: 0;
-  }
+  margin-bottom: 0;
+}
 
 .card {
   background-color: #333;
@@ -126,6 +130,14 @@ label {
   width: 77px;
 }
 
+#numeroCliente2 {
+  width: 85px;
+}
+
+#usuarioE2 {
+  width: 77px;
+}
+
 
 /* Responsividad */
 @media (min-width: 710px) and (max-width: 984px) {
@@ -146,12 +158,12 @@ label {
     flex-wrap: wrap;
   }
 
-  #cntndr-usuarioE{
+  #cntndr-usuarioE {
     display: flex;
     justify-content: end;
   }
 
-  #cntndr-segmentociclo{
+  #cntndr-segmentociclo {
     gap: 20px;
     flex-wrap: wrap;
   }
@@ -160,7 +172,7 @@ label {
     width: 100%;
   }
 
-  #resultado{
+  #resultado {
     flex-grow: 1;
     resize: none;
   }
@@ -169,12 +181,12 @@ label {
     margin-bottom: 0;
   }
 
-  #textAreaCodigos{
+  #textAreaCodigos {
     flex-grow: 1;
     resize: none;
   }
 
-  #cntndr-cods{
+  #cntndr-cods {
     flex-grow: 1;
     resize: none;
   }
@@ -187,17 +199,26 @@ label {
     width: 265px;
   }
 
+  #subcampaña2 {
+    width: 265px;
+  }
+
+  #lbl-subcampaña {
+    width: 147.93px;
+  }
+
 }
 
 @media (max-width: 671px) {
-  #cntndr-usuarioE{
+  #cntndr-usuarioE {
     justify-content: start !important;
   }
 }
 
 @media (max-width: 710px) {
-  #subcampaña {
-    width: 265px;
+
+  .linea-vertical {
+    display: none;
   }
 
   h2 {
@@ -228,13 +249,13 @@ label {
     flex-wrap: wrap;
   }
 
-  #cntndr-usuarioE{
+  #cntndr-usuarioE {
     display: flex;
     justify-content: end;
     margin-bottom: 0;
   }
 
-  #cntndr-segmentociclo{
+  #cntndr-segmentociclo {
     gap: 20px;
     flex-wrap: wrap;
   }
@@ -248,8 +269,17 @@ label {
     width: fit-content;
   }
 
-  #cntndr-segmentociclo{
+  #cntndr-segmentociclo {
     margin-top: 20px;
+  }
+
+  #cntndr-subcampaña {
+    width: 100%;
+    justify-content: start;
+  }
+
+  #lbl-subcampaña {
+    width: 147.93px;
   }
 }
 
@@ -259,8 +289,10 @@ label {
   }
 
   #cabecera h2 {
-    order: 3;       /* mueve el título al final */
-    width: 100%;    /* ocupa toda la fila */
+    order: 3;
+    /* mueve el título al final */
+    width: 100%;
+    /* ocupa toda la fila */
     text-align: center;
     margin-top: 10px;
   }
@@ -277,10 +309,11 @@ label {
 
   #cntndr-subcampaña {
     width: 100%;
-    justify-content: start;
+    justify-content: space-between;
+    flex-wrap: nowrap;
   }
 
-  #lbl-numcliente,#lbl-usuarioe{
+  #lbl-numcliente {
     width: 148px;
   }
 
@@ -288,23 +321,88 @@ label {
     width: 190px;
     max-width: fit-content;
   }
-}
-
-@media (max-width: 426px) {
-  #cntndr-subcampaña {
-    display: flex;
-    flex-wrap: wrap;
-  }
 
   #subcampaña {
     flex-grow: 1;
+  }
+
+  #subcampaña2 {
+    flex-grow: 1;
+  }
+
+  #lbl-subcampaña {
+    width: 148px;
+  }
+}
+
+@media (max-width: 426px) {
+
+  #cntndr-subcampaña,
+  #cntndr-numcliente,
+  #cntndr-usuarioE {
+    width: 100%;
+    display: flex;
+    justify-content: space-between !important;
+    flex-wrap: nowrap;
   }
 
   .label {
     width: 100px;
   }
 
-  #lbl-numcliente,#lbl-usuarioe{
+  #lbl-numcliente,
+  #lbl-usuarioe,
+  #lbl-subcampaña {
+    width: 100px !important;
+  }
+
+  #numeroCliente,
+  #usuarioE {
+    width: 157px !important;
+  }
+
+  #subcampaña {
+    max-width: 175px !important;
+  }
+
+  #numeroCliente2,
+  #usuarioE2 {
+    width: 166px !important;
+  }
+
+  #subcampaña2 {
+    max-width: 183px !important;
+  }
+}
+
+@media (max-width: 479px) {
+  #subcampaña {
+    width: 120px;
+    flex-grow: 1;
+  }
+
+  #subcampaña2 {
+    width: 120px;
+    flex-grow: 1;
+  }
+}
+
+@media (max-width: 517px) {
+  #lbl-usuarioe {
     width: 148px;
   }
+
+  #usuarioE {
+    width: 85px;
+  }
+
+  #usuarioE2 {
+    width: 85px;
+  }
+}
+
+.linea-vertical {
+  width: 1px; /* Grosor de la línea */
+  background-color: #ccc; /* Color de la línea */
+  margin: 0 20px; /* Opcional: para darle espacio a los lados */
 }
