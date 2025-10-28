@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let ciclo = cboCiclo.options[cboCiclo.selectedIndex].text;
 
         //Escribir plantilla
-        txtAreaResultadoParcial = `NOTA DE CREDITO FUNDADA\n\n• N° de teléfono: ${numCliente}\n• Nombre del Call Center: ${callCenter}\n• Campaña solicitante: ${campaña}\nIMR: ${imr}\n• N° de recibo: ${nroRecibo}\n• Importe sin IGV: S/. ${montoSinIGV}\n• Motivo: ${motivo}\n• Descarte realizado: ${descarte}\n• Medida correctiva: ${medidaCorrectiva}\n• Tipo de registro: ${tipoRegistro}\n• Área a imputar: ${area}`;
+        txtAreaResultadoParcial = `NOTA DE CREDITO FUNDADA\n\n• N° de teléfono: ${numCliente}\n• Nombre del Call Center: ${callCenter}\n• Campaña solicitante: ${campaña}\n• IMR: ${imr}\n• N° de recibo: ${nroRecibo}\n• Importe sin IGV: S/. ${montoSinIGV}\n• Motivo: ${motivo}\n• Descarte realizado: ${descarte}\n• Medida correctiva: ${medidaCorrectiva}\n• Tipo de registro: ${tipoRegistro}\n• Área a imputar: ${area}`;
 
         //Opcional: el usuario responsable del error
         if (cboAreaImputar.options[cboAreaImputar.selectedIndex].text !== "TI") {
