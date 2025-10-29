@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Permite comandos (Ctrl+V, Ctrl+C, Ctrl+X, Cmd+A, etc.)
         const isCtrlCommand = e.ctrlKey || e.metaKey;
         // Permite teclas de navegación y edición (Flechas, Backspace, Tab, Shift, etc.)
-        const isNavKey = e.key.length > 1; // "Backspace", "Shift", "ArrowLeft"
+        const isNavKey = e.key && e.key.length > 1; // "Backspace", "Shift", "ArrowLeft"
 
         if (isCtrlCommand || isNavKey) {
             return; // No previene la acción

@@ -216,6 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let subcampaña = cboSubcampaña.value;
         let segmento = cboSegmento.options[cboSegmento.selectedIndex].text;
         let ciclo = cboCiclo.options[cboCiclo.selectedIndex].text;
+        let numLineaPrin = txtNumLineaPrinc.value;
 
         //Escribir plantilla
         txtAreaResultadoParcial = `"TIPO DE SOLICITUD: Contención/Competencia\nIMR del cliente: ${imr}\nOperador: ${operador}\nPromoción ofrecida: ${promocion}\nCantidad de meses: ${cantidadMeses}\nMeses a aplicar: ${mesesAplicar}\nComportamiento de pago: ${cpPago}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}`;
@@ -247,6 +248,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (ckbCiclo.checked) {
             txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nCiclo de facturación: ${ciclo}`;
+        }
+
+        if (txtNumLineaPrinc.required) {
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nN° LÍNEA PRINCIPAL: ${numLineaPrin}`;
         }
 
         //Guardar todo el texto en la variables global y mostrarla en el campo de texto:

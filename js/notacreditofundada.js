@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         //Rellenar los demás campos como prosigue
-        txtAreaResultadoParcial = `${txtAreaResultadoParcial}\n• SN de la llamada: ${sn}\n• VB del supervisor: ${vbSupervisor}\n\nC¿Subcampaña: ${subCampaña}\nN° de teléfono: ${numCliente}\nUsuario: ${usuarioE}`;
+        txtAreaResultadoParcial = `${txtAreaResultadoParcial}\n• SN de la llamada: ${sn}\n• VB del supervisor: ${vbSupervisor}\n\nSubcampaña: ${subCampaña}\nN° de teléfono: ${numCliente}\nUsuario: ${usuarioE}`;
 
         if (ckbSegmento.checked) {
             txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nSegmento: ${segmento}`;
