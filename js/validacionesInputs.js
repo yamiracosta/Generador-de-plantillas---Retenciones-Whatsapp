@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const txtSnLlamada = document.getElementById('snLlamada');
     const dtChsrMesAplicar = document.getElementById('mesAplicar');
     const txtMontoSinIGV = document.getElementById('montoConIGV');
+    //-------------------------------------------------------------------
+    // Para descuento.html
+    const txtNumLineaPrinc = document.getElementById('numeroLineaPrincipal');
 
     // === 1️⃣ Validación para #numeroCliente ===
     // Solo números, debe empezar con 9 y máximo 9 caracteres
@@ -23,6 +26,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Bloquear letras o símbolos, pero permitir pegar (Ctrl+V / Cmd+V)
         txtNumeroCliente.addEventListener('keydown', (e) => {
+            const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowDown'];
+            const isCtrlV = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v'; // Ctrl+V o Cmd+V
+            const isCtrlC = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c'; // Ctrl+C
+            const isCtrlX = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'x'; // Ctrl+X
+
+            if (!allowedKeys.includes(e.key) && !/[0-9]/.test(e.key) && !isCtrlV && !isCtrlC && !isCtrlX) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    // === 1️⃣ Validación para #numeroLineaPrincipal ===
+    // Solo números, debe empezar con 9 y máximo 9 caracteres
+    if (txtNumLineaPrinc) {
+        txtNumLineaPrinc.addEventListener('input', () => {
+            let value = txtNumLineaPrinc.value.replace(/\D/g, ''); // elimina todo lo que no sea número
+            if (value.length > 9) value = value.slice(0, 9);    // máximo 9 caracteres
+            if (value && !value.startsWith('9')) value = '';    // si no empieza con 9, limpiar
+            txtNumLineaPrinc.value = value;
+        });
+
+        // Bloquear letras o símbolos, pero permitir pegar (Ctrl+V / Cmd+V)
+        txtNumLineaPrinc.addEventListener('keydown', (e) => {
             const allowedKeys = ['Backspace', 'Tab', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowDown'];
             const isCtrlV = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v'; // Ctrl+V o Cmd+V
             const isCtrlC = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c'; // Ctrl+C

@@ -14,7 +14,8 @@
 <body>
 
     <div class="card">
-        <div id="cabecera" style="display: flex; justify-content: space-between; align-items: center; text-align: center;">
+        <div id="cabecera"
+            style="display: flex; justify-content: space-between; align-items: center; text-align: center;">
             <a href="index.html" class="buttons" style="text-decoration: none; background-color: #dc3545;">⬅️
                 REGRESAR</a>
             <h2>GENERADOR DE PLANTILLAS: DESCUENTO</h2>
@@ -23,15 +24,18 @@
                 PLANTILLA</button>
         </div>
 
-        <div id="cntndr-fila2" style="display: flex; margin-bottom: 20px; justify-content: space-between; align-items: center;">
+        <div id="cntndr-fila2"
+            style="display: flex; margin-bottom: 20px; justify-content: space-between; align-items: center;">
             <div id="cntndr-numcliente" class="field2">
                 <label id="lbl-numcliente" for="numeroCliente">Número del cliente:</label>
-                <input required type="text" inputmode="decimal" id="numeroCliente" form="formCliente" pattern="\d{9}$" maxlength="9" title="El número debe empezar con 9 y tener 9 caracteres">
+                <input required type="text" inputmode="decimal" id="numeroCliente" form="formCliente" pattern="\d{9}$"
+                    maxlength="9" title="El número debe empezar con 9 y tener 9 caracteres">
             </div>
 
             <div id="cntndr-usuarioE" class="field2">
                 <label id="lbl-usuarioe" for="usuarioE">Usuario E:</label>
-                <input required type="text" id="usuarioE" form="formCliente" pattern="^E\d{7}$" maxlength="8" title="El nombre de usuario debe empezar con E y tener 8 caracteres">
+                <input required type="text" id="usuarioE" form="formCliente" pattern="^E\d{7}$" maxlength="8"
+                    title="El nombre de usuario debe empezar con E y tener 8 caracteres">
             </div>
 
             <div id="cntndr-subcampaña" class="field">
@@ -69,8 +73,14 @@
                         <option>35% DESCUENTO</option>
                         <option>30% DESCUENTO</option>
                         <option>20% DESCUENTO</option>
-                        <option>S/.60 DESCUENTO</option>
+                        <option value="60sodscto">S/.60 DESCUENTO</option>
                     </select>
+                </div>
+
+                <div id="cntndr-lineaprincipal" style="display: none;" class="field">
+                    <label for="numeroLineaPrincipal">N° LINEA PRINCIPAL:</label>
+                    <input required type="text" inputmode="decimal" id="numeroLineaPrincipal" form="formCliente"
+                        pattern="\d{9}$" maxlength="9" title="El número de la línea principal debe empezar con 9 y tener 9 caracteres">
                 </div>
 
                 <div class="field">
@@ -102,12 +112,14 @@
 
                 <div class="field">
                     <label class="label" for="snLlamada">SN de la llamada:</label>
-                    <input style="width: 157px;" required type="text" id="snLlamada" placeholder="Ingresar SN de llamada">
+                    <input style="width: 157px;" required type="text" id="snLlamada"
+                        placeholder="Ingresar SN de llamada">
                 </div>
 
                 <div class="field">
                     <label class="label" for="vbSupervisor">VB del supervisor:</label>
-                    <input style="width: 157px;" required type="text" id="vbSupervisor" placeholder="Ingresar VB de supervisor">
+                    <input style="width: 157px;" required type="text" id="vbSupervisor"
+                        placeholder="Ingresar VB de supervisor">
                 </div>
 
                 <div class="field">
@@ -115,7 +127,9 @@
                         <input type="checkbox" id="imrCheck">
                         <label for="imrCheck">IMR del cliente</label>
                     </div>
-                    <input style="width: 157px;" required disabled type="text" id="imrText" placeholder="Ingresar IMR del cliente" pattern="^\d+\.\d{2}$" title="El valor del IMR debe incluir 2 números decimales">
+                    <input style="width: 157px;" required disabled type="text" id="imrText"
+                        placeholder="Ingresar IMR del cliente" pattern="^\d+\.\d{2}$"
+                        title="El valor del IMR debe incluir 2 números decimales">
                 </div>
 
                 <div class="field">

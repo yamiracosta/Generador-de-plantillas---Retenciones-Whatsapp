@@ -26,6 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const cboCiclo = document.getElementById('cicloCbo');
     const txtUsuarioE = document.getElementById('usuarioE');
     const cboSubcampaña = document.getElementById('subcampaña');
+    const cntndrLineaPrinc = document.getElementById('cntndr-lineaprincipal'); //Campo de línea adicional
+    const txtNumLineaPrinc = document.getElementById('numeroLineaPrincipal'); //Campo input de número adicional
+
+    //-------------------------------------------------------------------------------------
+    //Mostrar el campo de número de línea adicional si la promoción elegida es S/. 60 de descuento
+    cboPromocion.addEventListener('change', () => {
+        if (cboPromocion.value === "60sodscto") {
+            cntndrLineaPrinc.style.display = "flex";
+            txtNumLineaPrinc.setAttribute('required', true);
+        } else {
+            cntndrLineaPrinc.style.display = "none";
+            txtNumLineaPrinc.setAttribute('required', false);
+        }
+    });
 
     //--------------------------------------------------------------------------------------
     //Habilitar o deshabilitar el campo de texto de IMR
@@ -276,6 +290,8 @@ document.addEventListener('DOMContentLoaded', () => {
         cboSegmento.selectedIndex = 0;
         cboCiclo.disabled = true;
         cboCiclo.selectedIndex = 0;
+        cntndrLineaPrinc.style.display = "none";
+        txtNumLineaPrinc.setAttribute('required', false);
     });
 
     //Activar los combos de ciclo y segmento
