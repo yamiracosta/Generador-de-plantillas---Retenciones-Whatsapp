@@ -33,11 +33,16 @@ document.addEventListener('DOMContentLoaded', () => {
     //Mostrar el campo de número de línea adicional si la promoción elegida es S/. 60 de descuento
     cboPromocion.addEventListener('change', () => {
         if (cboPromocion.value === "60sodscto") {
+            // MOSTRAR Y HABILITAR
             cntndrLineaPrinc.style.display = "flex";
             txtNumLineaPrinc.setAttribute('required', true);
+            txtNumLineaPrinc.disabled = false; // <-- AÑADIDO
         } else {
+            // OCULTAR Y DESHABILITAR
             cntndrLineaPrinc.style.display = "none";
             txtNumLineaPrinc.setAttribute('required', false);
+            txtNumLineaPrinc.disabled = true; // <-- AÑADIDO
+            txtNumLineaPrinc.value = "";      // <-- Recomendado: Limpia el valor
         }
     });
 
@@ -249,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
             txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nCiclo de facturación: ${ciclo}`;
         }
 
-        if (txtNumLineaPrinc.required) {
+        if (!txtNumLineaPrinc.disabled) {
             txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nN° LÍNEA PRINCIPAL: ${txtNumLineaPrinc.value}`;
         }
 

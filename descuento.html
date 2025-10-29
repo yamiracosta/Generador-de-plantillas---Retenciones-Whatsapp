@@ -79,8 +79,9 @@
 
                 <div id="cntndr-lineaprincipal" style="display: none;" class="field">
                     <label for="numeroLineaPrincipal">N° LINEA PRINCIPAL:</label>
-                    <input required type="text" inputmode="decimal" id="numeroLineaPrincipal" form="formCliente"
-                        pattern="\d{9}$" maxlength="9" title="El número de la línea principal debe empezar con 9 y tener 9 caracteres">
+                    <input type="text" inputmode="decimal" id="numeroLineaPrincipal" name="numeroLineaPrincipal"
+                        pattern="^9\d{8}$" maxlength="9" title="El número debe empezar con 9 y tener 9 dígitos"
+                        disabled>
                 </div>
 
                 <div class="field">
