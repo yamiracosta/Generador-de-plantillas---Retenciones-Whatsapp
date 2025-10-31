@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cboSegmento.selectedIndex=0;
         cboCiclo.disabled=true;
         cboCiclo.selectedIndex=0;
+        txtNumeroCli.focus();
     });
 
     //Activar los combos de ciclo y segmento

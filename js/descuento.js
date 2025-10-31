@@ -302,6 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cboCiclo.selectedIndex = 0;
         cntndrLineaPrinc.style.display = "none";
         txtNumLineaPrinc.setAttribute('required', false);
+        txtNumeroCli.focus();
     });
 
     //Activar los combos de ciclo y segmento

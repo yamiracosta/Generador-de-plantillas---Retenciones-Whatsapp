@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Obtener valores
         let operador = cboOperador.value;
-        let promocion = cboPromocion.value;
+        let promocion = cboPromocion.options[cboPromocion.selectedIndex].text;
         let cantidadMeses = cboCantMeses.options[cboCantMeses.selectedIndex].text;
         let mesesAplicar = formatearMes(dtChsrMesAplicar.value);
         let sn = txtSnLlamada.value;
@@ -115,7 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (ckbNuevoPlan.checked) {
-            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nNuevo plan: ${plan}\nMeses a aplicar: ${mesesAplicar}`;
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nNuevo plan: ${plan}`;
+        }
+
+        if (cboPromocion.value !== "doble_bono") {
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}nMeses a aplicar: ${mesesAplicar}`
         }
 
         txtAreaResultadoParcial = `${txtAreaResultadoParcial}"`;
@@ -169,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cboSegmento.selectedIndex=0;
         cboCiclo.disabled=true;
         cboCiclo.selectedIndex=0;
+        txtNumeroCli.focus();
     });
 
     //Activar los combos de ciclo y segmento
