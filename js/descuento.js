@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cntndrLineaPrinc.style.display = "flex";
             txtNumLineaPrinc.setAttribute('required', true);
             txtNumLineaPrinc.disabled = false; // <-- AÑADIDO
+            txtNumLineaPrinc.focus();
         } else {
             // OCULTAR Y DESHABILITAR
             cntndrLineaPrinc.style.display = "none";

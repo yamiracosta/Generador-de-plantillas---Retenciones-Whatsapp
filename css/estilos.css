@@ -111,6 +111,14 @@ textarea {
   border-color: #eee;
 }
 
+input:disabled,
+select:disabled,
+textarea:disabled {
+    background-color: #666; /* Un fondo gris oscuro, va bien con tu tema */
+    color: #bbb;             /* Un color de texto más claro y apagado */
+    cursor: not-allowed;    /* Opcional: Cambia el cursor al pasar por encima */
+}
+
 /* Es crucial añadir un estado :focus */
 input:focus,
 select:focus,
