@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let ciclo = cboCiclo.options[cboCiclo.selectedIndex].text;
 
         //Escribir plantilla
-        txtAreaResultadoParcial = `"TIPO DE SOLICITUD: Contención PORT OUT\nOperador: ${operador}\Bono ofrecido: ${promocion}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}`;
+        txtAreaResultadoParcial = `"TIPO DE SOLICITUD: Contención PORT OUT\nOperador: ${operador}\nBono ofrecido: ${promocion}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}`;
 
         if (ckbFecComprPago.checked) {
             txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nCompromiso de pago: ${fecComprPago}`;
