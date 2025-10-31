@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let ciclo = cboCiclo.options[cboCiclo.selectedIndex].text;
 
         //Escribir plantilla
-        txtAreaResultadoParcial = `"TIPO DE SOLICITUD: Contención PORT OUT\nOperador: ${operador}\nPromoción ofrecida: ${promocion}\nCantidad de meses: ${cantidadMeses}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}`;
+        txtAreaResultadoParcial = `"TIPO DE SOLICITUD: Contención PORT OUT\nOperador: ${operador}\nPromoción ofrecida: ${promocion}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}`;
 
         if (ckbFecComprPago.checked) {
             txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nCompromiso de pago: ${fecComprPago}`;
@@ -115,11 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (ckbNuevoPlan.checked) {
-            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nNuevo plan: ${plan}`;
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nNuevo plan: ${plan}\nMeses a aplicar: ${mesesAplicar}`;
         }
 
         if (cboPromocion.value !== "doble_bono") {
-            txtAreaResultadoParcial = `${txtAreaResultadoParcial}nMeses a aplicar: ${mesesAplicar}`
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nCantidad de meses: ${cantidadMeses}`
         }
 
         txtAreaResultadoParcial = `${txtAreaResultadoParcial}"`;
