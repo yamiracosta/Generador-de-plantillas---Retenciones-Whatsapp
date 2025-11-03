@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="shortcut icon" href="https://cdn-icons-png.freepik.com/512/10328/10328754.png" type="image/x-icon">
+    <script src="js/validacionesInputs.js"></script>
+    <script src="js/contencionBajaPrepago.js"></script>
+    <title>GENERADOR DE PLANTILLAS PARA BAJA VOLUNTARIA O MIGRACION A PREPAGO</title>
+</head>
+<body>
+    <div class="card">
+        <div id="cabecera" style="display: flex; justify-content: space-between; align-items: center; text-align: center;">
+            <a href="index.html" class="buttons" style="text-decoration: none; background-color: #dc3545;">⬅️
+                REGRESAR</a>
+            <h2>GENERADOR DE PLANTILLAS: BAJA VOLUNTARIA/MIGRACION A PREPAGO</h2>
+            <button class="buttons" type="button" id="btnNuevaPlantilla"
+                style="height: fit-content; background-color: #0d6efd;">➕ NUEVA
+                PLANTILLA</button>
+        </div>
+
+        <div id="cntndr-fila2"
+            style="display: flex; margin-bottom: 20px; justify-content: space-between; align-items: center;">
+            <div id="cntndr-numcliente" class="field2">
+                <label id="lbl-numcliente" for="numeroCliente">Número del cliente:</label>
+                <input required type="text" inputmode="decimal" id="numeroCliente" form="formCliente" pattern="\d{9}$"
+                    maxlength="9" title="El número debe empezar con 9 y tener 9 caracteres">
+            </div>
+
+            <div id="cntndr-usuarioE" class="field2">
+                <label id="lbl-usuarioe" for="usuarioE">Usuario E:</label>
+                <input required type="text" id="usuarioE" form="formCliente" pattern="^E\d{7}$" maxlength="8"
+                    title="El nombre de usuario debe empezar con E y tener 8 caracteres">
+            </div>
+
+            <div id="cntndr-subcampaña" class="field">
+                <label id="lbl-subcampaña" for="subcampaña">Subcampaña:</label>
+                <select required id="subcampaña" form="formCliente">
+                    <option value="">Seleccionar</option>
+                    <option>CONSULTA PREVIA</option>
+                    <option>CONTACTADOS</option>
+                    <option>CONSULTA PREVIA/DEUDA CEDENTE</option>
+                    <option>DEUDA CEDENTE</option>
+                </select>
+            </div>
+        </div>
+
+        <hr style="margin-bottom: 30px;">
+
+        <div id="cntndr-form-result" style="display: flex; justify-content: space-between;">
+            <form id="formCliente" name="formCliente">
+
+                <div class="field">
+                    <label class="label" for="operador">Tipo de solicitud:</label>
+                    <select required id="tipoSolicitud" style="width: 175px;">
+                        <option value="">Seleccionar</option>
+                        <option>BAJA VOLUNTARIA</option>
+                        <option>MIGRACION A PREPAGO</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <div class="field" style="margin-bottom: 0;">
+                        <input type="checkbox" id="imrCheck">
+                        <label for="imrCheck">IMR del cliente</label>
+                    </div>
+                    <input style="width: 157px;" required disabled type="text" id="imrText"
+                        placeholder="Ingresar IMR del cliente" pattern="^\d+\.\d{2}$"
+                        title="El valor del IMR debe incluir 2 números decimales">
+                </div>
+
+                <div class="field">
+                    <label class="label" for="promocion">Promoción ofrecida:</label>
+                    <select required id="promocion" style="width: 175px;">
+                        <option value="">Seleccionar</option>
+                        <option>50% DESCUENTO</option>
+                        <option>35% DESCUENTO</option>
+                        <option>30% DESCUENTO</option>
+                        <option>20% DESCUENTO</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="meses">Cantidad de meses:</label>
+                    <select required id="meses" style="width: 175px;">
+                        <option value="">Seleccionar</option>
+                        <script>
+                            for (let i = 12; i >= 1; i--) {
+                                if (i !== 1) {
+                                    document.write(`<option>${i} MESES</option>`);
+                                } else {
+                                    document.write(`<option>${i} MES</option>`);
+                                }
+                            }
+                        </script>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="mesAplicar">Meses a aplicar:</label>
+                    <input required type="month" id="mesAplicar" style="width: 157px;" placeholder="Seleccionar">
+                </div>
+
+                <div class="field">
+                    <label class="label" for="snLlamada">SN de la llamada:</label>
+                    <input style="width: 157px;" required type="text" id="snLlamada"
+                        placeholder="Ingresar SN de llamada">
+                </div>
+
+                <div class="field">
+                    <div class="field" style="margin-bottom: 0;">
+                        <input type="checkbox" id="nuevoPlanCheck">
+                        <label for="nuevoPlanCheck">Nuevo plan: </label>
+                    </div>
+                    <select style="width: 175px;" disabled id="nuevoPlanCbo">
+                        <option>MAX 29.90</option>
+                        <option>MAX 39.90</option>
+                        <option>MAX 49.90</option>
+                        <option>MAX 56.90</option>
+                        <option>MAX 60.90</option>
+                        <option>MAX ILIMITADO 69.90</option>
+                        <option selected>MAX ILIMITADO 79.90</option>
+                        <option>MAX ILIMITADO 95.90</option>
+                        <option>MAX ILIMITADO 109.90</option>
+                        <option>MAX ILIMITADO 159.90</option>
+                        <option>MAX ILIMITADO 189.90</option>
+                        <option>MAX ILIMITADO 289.90</option>
+                    </select>
+                </div>
+
+                <div class="field" style="justify-content:left;">
+                    <input type="checkbox" id="compromisoPago">
+                    <label for="compromisoPago" id="lblCompromPago">Compromiso de pago</label>
+                </div>
+
+            </form>
+
+            <div class="linea-vertical"></div>
+            <div class="linea-horizontal"></div>
+
+            <div class="result-section">
+                <!--INCLUIR CAMPOS DE SEGMENTO Y CICLO DE FACTURACION (opcional)-->
+                <div id="cntndr-segmentociclo" class="field">
+                    <div class="field" style="margin-bottom: 0;">
+                        <input type="checkbox" id="segmentoCheck">
+                        <label for="segmentoCheck">Segmento:</label>
+                    </div>
+                    <select style="width: 53px;" disabled name="segmentoCbo" id="segmentoCbo">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="P">P</option>
+                        <option value="S">S</option>
+                    </select>
+                    <div id="cntndr-ciclo" class="field" style="margin-bottom: 0;">
+                        <div class="field" style="margin-bottom: 0;">
+                            <input type="checkbox" id="cicloCheck">
+                            <label for="cicloCheck">Ciclo fact.:</label>
+                        </div>
+                        <select style="width: 53px;" disabled name="cicloCbo" id="cicloCbo">
+                            <script>
+                                const excluir = [2, 7, 13, 15, 17, 21, 23, 27];
+                                for (let i = 1; i <= 28; i++) {
+                                    if (!excluir.includes(i)) {
+                                        document.write(`<option>${i}</option>`);
+                                    }
+                                }
+                            </script>
+                        </select>
+                    </div>
+                </div>
+
+                <!------------------------------------------------------------->
+
+                <button class="buttons" type="submit" id="mostrarBtn" style="margin-bottom: 10px;" form="formCliente">✅
+                    GENERAR PLANTILLA</button>
+
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <label for="resultado"><strong>PLANTILLA GENERADA:</strong></label>
+
+                    <button class="buttons" type="button" id="btnCopiar" style="color: black; font-weight: 700;">📋
+                        Copiar</button>
+                </div>
+                <textarea id="resultado" readonly></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
