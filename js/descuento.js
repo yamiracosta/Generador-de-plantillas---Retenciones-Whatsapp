@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (imr === "No afecto a IMR") {
             imr = `""${imr}""`;
         }
-        let promocion = cboPromocion.value;
+        let promocion = cboPromocion.options[cboPromocion.selectedIndex].text;
         let cantidadMeses = cboCantMeses.value;
         let mesesAplicar = formatearMes(dtChsrmesAplicar.value);
         let cpPago = txtCpPago.value;
