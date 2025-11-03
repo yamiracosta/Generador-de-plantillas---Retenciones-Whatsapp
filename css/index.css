@@ -102,7 +102,7 @@ h2 {
     }
 }
 
-@media (min-width: 450px) and (max-width: 1200px) {
+@media (min-width: 450px) and (max-width: 1246px) {
     body {
         display: block;
         /* evita que el contenido quede centrado verticalmente */
