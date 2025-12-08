@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cboSubcampaña = document.getElementById('subcampaña');
     const cntndrLineaPrinc = document.getElementById('cntndr-lineaprincipal'); //Campo de línea adicional
     const txtNumLineaPrinc = document.getElementById('numeroLineaPrincipal'); //Campo input de número adicional
+    const ckbFullRetencion = document.getElementById('fullRetencion');
 
     //-------------------------------------------------------------------------------------
     //Mostrar el campo de número de línea adicional si la promoción elegida es S/. 60 de descuento
@@ -222,6 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let subcampaña = cboSubcampaña.value;
         let segmento = cboSegmento.options[cboSegmento.selectedIndex].text;
         let ciclo = cboCiclo.options[cboCiclo.selectedIndex].text;
+        let fullRete = `FULL RETENCION ${operador}`;
 
         //Escribir plantilla
         txtAreaResultadoParcial = `"TIPO DE SOLICITUD: Contención/Competencia\nIMR del cliente: ${imr}\nOperador: ${operador}\nPromoción ofrecida: ${promocion}\nCantidad de meses: ${cantidadMeses}\nMeses a aplicar: ${mesesAplicar}\nComportamiento de pago: ${cpPago}\nSN de la llamada: ${sn}\nVB del supervisor: ${vbSupervisor}`;
@@ -257,6 +259,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!txtNumLineaPrinc.disabled) {
             txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nN° LÍNEA PRINCIPAL: ${txtNumLineaPrinc.value}`;
+        }
+
+        if (ckbFullRetencion.checked) {
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\n\n${fullRete}`;
         }
 
         //Guardar todo el texto en la variables global y mostrarla en el campo de texto:
@@ -303,6 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cntndrLineaPrinc.style.display = "none";
         txtNumLineaPrinc.setAttribute('required', false);
         txtNumeroCli.focus();
+        ckbFullRetencion.checked = false;
     });
 
     //Activar los combos de ciclo y segmento
