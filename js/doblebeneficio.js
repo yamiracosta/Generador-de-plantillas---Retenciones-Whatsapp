@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Validar si comportamiento de pago es obligatorio:
         if (txtCpPago.hasAttribute('required')) {
-            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nComportamiento de pago: ${cpPago}`;
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\Decil: ${cpPago}`;
         }
 
         if (ckbFecComprPago.checked) {
