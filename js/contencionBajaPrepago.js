@@ -130,6 +130,10 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         let tipoSolicitud = cboTipoSolicitud.options[cboTipoSolicitud.selectedIndex].text;
 
+        if (tipoSolicitud === "PROBLEMA DE COBERTURA") {
+            tipoSolicitud = "Problemas con cobertura - Validación de celdas AT"
+        }
+
         //Escribir plantilla
         txtAreaResultadoParcial = `"TIPO DE SOLICITUD: ${tipoSolicitud}\nIMR del cliente: ${imr}\nPromoción ofrecida: ${promocion}\nCantidad de meses: ${cantidadMeses}\nMeses a aplicar: ${mesesAplicar}\nSN de la llamada: ${sn}`;
 
