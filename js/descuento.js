@@ -29,6 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const cntndrLineaPrinc = document.getElementById('cntndr-lineaprincipal'); //Campo de línea adicional
     const txtNumLineaPrinc = document.getElementById('numeroLineaPrincipal'); //Campo input de número adicional
     const ckbFullRetencion = document.getElementById('fullRetencion');
+    const lblDecilCp = document.getElementById('lbl-decil-cp'); // Label de decil o comportamiento
+
+    //-------------------------------------------------------------------------------------------------------------
+    //Mostrar "Decil" o "Comportamiento de pago" según corresponda la campaña
+    cboSubcampaña.addEventListener('change', ()=> {
+        if (cboSubcampaña.options[cboSubcampaña.selectedIndex].text === "CONTACTADOS") {
+            lblDecilCp.textContent = "Decil:";
+            txtCpPago.placeholder = "Ingresar decil";
+        } else {
+            lblDecilCp.textContent = "Comportamiento de pago:";
+            txtCpPago.placeholder = "Ingresar comportamiento de pago";
+        }
+    })
 
     //-------------------------------------------------------------------------------------
     //Mostrar el campo de número de línea adicional si la promoción elegida es S/. 60 de descuento
@@ -36,13 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cboPromocion.value === "60sodscto") {
             // MOSTRAR Y HABILITAR
             cntndrLineaPrinc.style.display = "flex";
-            txtNumLineaPrinc.setAttribute('required', true);
+            //txtNumLineaPrinc.setAttribute('required', true);
             txtNumLineaPrinc.disabled = false; // <-- AÑADIDO
             txtNumLineaPrinc.focus();
         } else {
             // OCULTAR Y DESHABILITAR
             cntndrLineaPrinc.style.display = "none";
-            txtNumLineaPrinc.setAttribute('required', false);
+            //txtNumLineaPrinc.setAttribute('required', false);
             txtNumLineaPrinc.disabled = true; // <-- AÑADIDO
             txtNumLineaPrinc.value = "";      // <-- Recomendado: Limpia el valor
         }
