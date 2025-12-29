@@ -25,8 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const cboCiclo = document.getElementById('cicloCbo');
     const txtUsuarioE = document.getElementById('usuarioE');
     const cboSubcampaña = document.getElementById('subcampaña');
+    const lblDecilCp = document.getElementById('lbl-decil-cp'); // Label de decil o comportamiento
 
-    //Validar 3 tipos de promociones
+    //-------------------------------------------------------------------------------------------------------------
+    //Mostrar "Decil" o "Comportamiento de pago" según corresponda la campaña
+    cboSubcampaña.addEventListener('change', ()=> {
+        if (cboSubcampaña.options[cboSubcampaña.selectedIndex].text === "CONTACTADOS") {
+            lblDecilCp.textContent = "Decil:";
+            txtCpPago.placeholder = "Ingresar decil";
+        } else {
+            lblDecilCp.textContent = "Comportamiento de pago:";
+            txtCpPago.placeholder = "Ingresar comportamiento de pago";
+        }
+    })
 
     //--------------------------------------------------------------------------------------
     //Habilitar o deshabilitar el campo de texto de IMR
@@ -49,27 +60,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ckbDsctoVig.checked) {
             cboRequiereAnul.disabled = false;
             if (cboRequiereAnul.value == "1") {
-                txtAreaCods.setAttribute("required",true);
+                txtAreaCods.setAttribute("required", true);
                 txtAreaCods.disabled = false;
             } else {
                 txtAreaCods.disabled = true;
-                txtAreaCods.setAttribute("required",false);
+                txtAreaCods.setAttribute("required", false);
             }
         } else {
             cboRequiereAnul.disabled = true;
             txtAreaCods.disabled = true;
-            txtAreaCods.setAttribute("required",false);
+            txtAreaCods.setAttribute("required", false);
         }
     });
 
     cboRequiereAnul.addEventListener('change', () => {
         if (cboRequiereAnul.value == "1") {
             txtAreaCods.disabled = false;
-            txtAreaCods.setAttribute("required",true);
+            txtAreaCods.setAttribute("required", true);
             txtAreaCods.focus();
         } else {
             txtAreaCods.disabled = true;
-            txtAreaCods.setAttribute("required",false);
+            txtAreaCods.setAttribute("required", false);
             txtAreaCods.value = "";
         }
     });
@@ -211,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Validar si comportamiento de pago es obligatorio:
         if (txtCpPago.hasAttribute('required')) {
-            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\nDecil: ${cpPago}`;
+            txtAreaResultadoParcial = `${txtAreaResultadoParcial}\n${lblDecilCp.textContent} ${cpPago}`;
         }
 
         if (ckbFecComprPago.checked) {
@@ -274,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cboRequiereAnul.disabled = true;
         txtAreaCods.disabled = true;
         txtAreaCods.value = "";
-        txtAreaCods.setAttribute("required",false);
+        txtAreaCods.setAttribute("required", false);
         txtAreaResultado.textContent = "";
         txtNumeroCli.value = "";
         ckbSegmento.checked = false;
@@ -302,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cboCiclo.disabled = true;
         }
     })
-    
+
 });
 
 function mostrarFechComprPago() {
